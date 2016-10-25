@@ -17,11 +17,12 @@ a {
 
   transition-duration: 0.4s;
   font-family: 'Yellowtail', cursive;
+  border-radius: 5px;
   color: white;
   position: relative;
   display: inline-block;
-  font-size: 4rem;
-  margin-top: 3%;
+  font-size: 6rem;
+  margin-top: 4%;
   padding-left: 1%;
   padding-right: 1%;
   margin-left: 1%;
@@ -31,17 +32,16 @@ a {
 .tytle  {
   background: #E9423A;
   padding: 55px 35px;
-  font-size: 10rem;
+  font-size: 6.5vw;
   display: inline-block;
   line-height: 2.5rem;
   margin: 0;
   vertical-align: top;
 
 }
-
-
 .subtyt:hover {
     background-color: #555555;
     color: white;
     border: 2px solid white;
 }
+.

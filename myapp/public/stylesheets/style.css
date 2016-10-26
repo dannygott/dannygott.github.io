@@ -4,6 +4,7 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-image: url("/images/background.jpg");
+  background-attachment: fixed;
   background-size:cover;
   background-repeat: no-repeat;
 }
@@ -31,7 +32,7 @@ a {
 }
 .tytle  {
   background: #E9423A;
-  padding: 55px 35px;
+  padding: 6vw 6vw;
   font-size: 6.5vw;
   display: inline-block;
   line-height: 2.5rem;
@@ -44,4 +45,29 @@ a {
     color: white;
     border: 2px solid white;
 }
+.footer {
+    background: #E9423A;
+    text-align: right;
+    display: inline-block;
+    position: fixed;
+
+    padding-right:10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 30px;
+    font-family: 'Yellowtail', cursive;
+}
+.lowercontent{
+    background: white;
+    margin-top: 100vw;
+    z-index: 11;
+    position: relative;
+
+}
+
+
+
+
+
 .

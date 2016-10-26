@@ -16,7 +16,7 @@
 4 verbose stack     at tryToString (fs.js:455:3)
 4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:442:12)
 5 verbose cwd C:\Users\Daniel\dannygott.github.io
-6 error Windows_NT 10.0.14393
+6 error Windows_NT 10.0.14931
 7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
 8 error node v6.8.0
 9 error npm  v3.10.8

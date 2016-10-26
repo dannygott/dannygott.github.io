@@ -68,11 +68,21 @@ a {
 }
 .cursive{
   font-family: 'Yellowtail', cursive;
-  font-size: 3vw;
-  padding-top: 1vw;
+  font-size: 5vw;
+  padding-top: 5vw;
   text-align: center;
 }
-
+.kitty{
+  display: inline-block;
+  border-radius: 10px;
+  padding-right: 20px;
+  margin-left: 30px;
+  padding-top: 3vw;
+  position: relative;
+  border-style: solid;
+  border-color: #E9423A;
+  border-width: thick;
+}
 
 
 

@@ -5,3 +5,4 @@ function scrollfirst() {
       1000);
 
 }
+$('.parallax-window').parallax({imageSrc: '/images/backgroundparall.jpg'});

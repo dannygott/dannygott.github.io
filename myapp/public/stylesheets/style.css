@@ -39,12 +39,15 @@ a {
   line-height: 2.5rem;
   margin: 0;
   vertical-align: top;
+  box-shadow: 3px 5px 20px 1px rgba(0,0,0,0.63);
 
 }
 .subtyt:hover {
-    background-color: #555555;
+    background-color: #00C36A;
     color: white;
     border: 2px solid white;
+    opacity: .8;
+    box-shadow: 3px 5px 20px 1px rgba(0,0,0,0.63);
 }
 .footer {
     background: #E9423A;
@@ -77,11 +80,18 @@ a {
   border-radius: 10px;
   padding-right: 20px;
   margin-left: 30px;
+  margin-bottom: 20px;
   padding-top: 3vw;
   position: relative;
   border-style: solid;
-  border-color: #E9423A;
+  border-color: black;
   border-width: thick;
+}
+.lowertytle{
+  background-color:grey;
+  color: white;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 

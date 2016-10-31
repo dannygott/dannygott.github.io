@@ -4,15 +4,15 @@ extends layout
 block content
 
   script(src="http://code.jquery.com/jquery-1.7.1.min.js")
-  script(src="/javascripts/parallax.min.js")
+  script(src="/javascripts/jquery.waypoints.js")
   script(src='/javascripts/scroll.js')
 
-  div(style = "padding-top:10%;   position: fixed; width: 100%; float:left;     right: 0; top: 0;")
+  div( id="toppety" , style = "padding-top:10%;   position: fixed; width: 100%; float:left; right: 0; top: 0;").maintarg
 
     center
         h1.tytle ❮DANIEL&nbsp;GOTT❯
         div
-          button(onclick="scrollfirst()").subtyt Photographer
+          button(onclick="fadetoPhoto()").subtyt Daydreamer
           button(onclick="scrollfirst()").subtyt Developer
           button(onclick="scrollfirst()").subtyt Splendid Chap
 

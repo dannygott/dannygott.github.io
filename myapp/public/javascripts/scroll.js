@@ -5,4 +5,22 @@ function scrollfirst() {
       1000);
 
 }
-$('.parallax-window').parallax({imageSrc: '/images/backgroundparall.jpg'});
+
+  $("#in").click(function(){
+      $(".target").fadeIn( 'slow', function(){
+        $(".log").text('Fade In Transition Complete');
+      });
+  });
+
+  function fadetoPhoto() {
+      $(".maintarg").fadeOut( 'slow', function(){
+        $(".log").text('Fade Out Transition Complete');
+      });
+  }
+
+  var waypoint = new Waypoint({
+    element: document.getElementsByClassName("maintarg"),
+    handler: function() {
+      notify('Basic waypoint triggered')
+    }
+  })

@@ -4,6 +4,7 @@ extends layout
 block content
 
   script(src="http://code.jquery.com/jquery-1.7.1.min.js")
+  link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
   script(src="/javascripts/jquery.waypoints.js")
   script(src='/javascripts/scroll.js')
 
@@ -13,14 +14,26 @@ block content
         h1.tytle ❮DANIEL&nbsp;GOTT❯
         div
           button(onclick="fadetoPhoto()").subtyt Daydreamer
-          button(onclick="scrollfirst()").subtyt Developer
+          button(onclick="fadetoDeveloper()").subtyt Developer
           button(onclick="scrollfirst()").subtyt Splendid Chap
 
 
-  div.lowercontent
+  div.splendidChap
     h1.cursive.lowertytle Who am I?
-    div
+    div.nestedCont
       img(width = "300px" src = "/images/DanielGott-Kitty.png").kitty
-      p(style="display: inline-block; position:reletive; padding-left:10px; font-size: 2vw;") My name is Daniel Gott. I like Cats, Prorgramming, Design, and Photography
+      p(style=" font-size: 2vw;") My name is Daniel Gott. I like Cats, Prorgramming, Design, and Photography
+      i(class="material-icons" style ="font-size: 48px;") g_translate
+      p(style="display:inline-block; font-size: 2vw;") I am fluent in English and Russian
 
-  div(data-parallax="scroll" data-image-src="/images/backgroundparall.jpg").parallax-window
+  div.developer
+    h1.cursive.lowertytle I make stuff with my computer
+    div.nestedCont
+      div(style="box-shadow: 0px 2px 5px 4px rgba(0,0,0,0.29);  border-top-left-radius: 10px; border-top-right-radius: 10px;")
+        div.lowercontFrametop
+          i(class="material-icons" style ="font-size: 48px; padding-left:10px; padding-top:10px;") g_translate
+        div.lowercontFramebot
+          p slkfjsdlkfj
+          p sdlkfjsdklj
+          p sdlfkjsdklfj
+          p sdlkfjsdklj

@@ -14,13 +14,15 @@ function scrollfirst() {
 
   function fadetoPhoto() {
       $(".maintarg").fadeOut( 'slow', function(){
-        $(".log").text('Fade Out Transition Complete');
+        $(".splendidChap").fadeIn( 'slow', function(){
+          $(".log").text('Fade In Transition Complete');
+        });
       });
   }
-
-  var waypoint = new Waypoint({
-    element: document.getElementsByClassName("maintarg"),
-    handler: function() {
-      notify('Basic waypoint triggered')
-    }
-  })
+  function fadetoDeveloper() {
+      $(".maintarg").fadeOut( 'slow', function(){
+        $(".developer").fadeIn( 'slow', function(){
+          $(".log").text('Fade In Transition Complete');
+        });
+      });
+  }

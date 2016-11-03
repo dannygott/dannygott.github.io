@@ -21,20 +21,24 @@ function scrollfirst() {
   };
 
   function fadetoPhoto() {
+    if(loaded == "none"){
       $(".maintarg").fadeOut( 'slow', function(){
         $(".splendidChap").fadeIn( 'slow', function(){
             window.location.hash = "#splendidChap";
             loaded = ".splendidChap"
         });
       });
+    }
   }
   function fadetoDeveloper() {
+    if(loaded == "none"){
       $(".maintarg").fadeOut( 'slow', function(){
         $(".developer").fadeIn( 'slow', function(){
           window.location.hash = "#developer";
           loaded = ".developer"
         });
       });
+    }
   }
 
   window.onhashchange = function(){
@@ -47,10 +51,27 @@ function scrollfirst() {
     }
   }
   
-function loadhome(argument) {
+function loadhome() {
+  if(loaded != "none" && checkhover() != "A"){
    $(loaded).fadeOut( 'slow', function(){
            $(".maintarg").fadeIn( 'slow', function(){
-          console.log("i ran")
+          loaded = "none"
+          window.location.hash = "#home";
         });
       });
+  }
+}
+
+
+
+function checkhover(){
+ var element = $(':hover');
+    if(element.length)
+    {
+        var domElement = element[element.length - 1];
+        var tagName = domElement.tagName;
+        return tagName
+        
+
+    }
 }

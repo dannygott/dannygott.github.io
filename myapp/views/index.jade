@@ -2,38 +2,37 @@
 extends layout
 
 block content
-
-  script(src="http://code.jquery.com/jquery-1.7.1.min.js")
-  link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-  script(src="/javascripts/jquery.waypoints.js")
-  script(src='/javascripts/scroll.js')
-
-  div( id="toppety" , style = "padding-top:10%;   position: fixed; width: 100%; float:left; right: 0; top: 0;").maintarg
-
-    center
-        h1.tytle ❮DANIEL&nbsp;GOTT❯
-        div
-          button(onclick="fadetoPhoto()").subtyt Daydreamer
-          button(onclick="fadetoDeveloper()").subtyt Developer
-          button(onclick="scrollfirst()").subtyt Splendid Chap
-
-
-  div.splendidChap
-    h1.cursive.lowertytle Who am I?
-    div.nestedCont
-      img(width = "300px" src = "/images/DanielGott-Kitty.png").kitty
-      p(style=" font-size: 2vw;") My name is Daniel Gott. I like Cats, Prorgramming, Design, and Photography
-      i(class="material-icons" style ="font-size: 48px;") code
-      p(style="display:inline-block; font-size: 2vw;") I am fluent in English and Russian
-
-  div.developer
-    h1.cursive.lowertytle I make stuff with my computer
-    div.nestedCont
-      div(style="box-shadow: 0px 2px 5px 4px rgba(0,0,0,0.29);  border-top-left-radius: 10px; border-top-right-radius: 10px;")
-        div.lowercontFrametop
-          i(class="material-icons" style ="font-size: 48px; padding-left:10px; padding-top:10px;") code
-        div.lowercontFramebot
-          p slkfjsdlkfj
-          p sdlkfjsdklj
-          p sdlfkjsdklfj
-          p sdlkfjsdklj
+    script(src="http://code.jquery.com/jquery-1.7.1.min.js")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    script(src="/javascripts/jquery.waypoints.js")
+    script(src='/javascripts/scroll.js')
+  
+    div( id="toppety" , style = "padding-top:10%;   position: fixed; width: 100%; float:left; right: 0; top: 0;").maintarg
+  
+      center
+          h1.tytle ❮DANIEL&nbsp;GOTT❯
+          div
+            button(onclick="fadetoPhoto()").subtyt Daydreamer
+            button(onclick="fadetoDeveloper()").subtyt Developer
+            button(onclick="scrollfirst()").subtyt Splendid Chap
+  
+  
+    div.splendidChap
+      h1.cursive.lowertytle Who am I?
+      div.nestedCont
+        img(width = "300px" src = "/images/DanielGott-Kitty.png").kitty
+        p(style=" font-size: 2vw;") My name is Daniel Gott. I like Cats, Prorgramming, Design, and Photography
+        i(class="material-icons" style ="font-size: 48px;") code
+        p(style="display:inline-block; font-size: 2vw;") I am fluent in English and Russian
+  
+    div.developer
+      h1.cursive.lowertytle I make stuff with my computer
+      div.nestedCont
+        div(style="box-shadow: 0px 2px 5px 4px rgba(0,0,0,0.29);  border-top-left-radius: 10px; border-top-right-radius: 10px;")
+          div.lowercontFrametop
+            i(class="material-icons" style ="font-size: 48px; padding-left:10px; padding-top:10px;") code
+          div.lowercontFramebot
+            p slkfjsdlkfj
+            p sdlkfjsdklj
+            p sdlfkjsdklfj
+            p sdlkfjsdklj

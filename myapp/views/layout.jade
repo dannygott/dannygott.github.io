@@ -7,5 +7,7 @@ html(onclick = "loadhome()")
         href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
 
   body
+    video(playsinline autoplay muted loop id = 'backvid')
+      source(src="/images/backVid2.webm" type="video/webm")
     block content
     include footer

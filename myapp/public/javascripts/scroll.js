@@ -14,8 +14,7 @@ function scrollfirst() {
         $(".log").text('Fade In Transition Complete');
       });
   });
-
-*/
+  */
   window.onload = function (event) {
     window.location.hash = "#home";
   };
@@ -50,7 +49,7 @@ function scrollfirst() {
       break;
     }
   }
-  
+
 function loadhome() {
   if(loaded != "none" && checkhover() != "A"){
    $(loaded).fadeOut( 'slow', function(){
@@ -71,7 +70,7 @@ function checkhover(){
         var domElement = element[element.length - 1];
         var tagName = domElement.tagName;
         return tagName
-        
+
 
     }
 }

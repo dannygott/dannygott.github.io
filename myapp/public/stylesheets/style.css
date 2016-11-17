@@ -68,6 +68,13 @@ a {
     position: relative;
     display:none;
 }
+.Photographer{
+    background: white;
+    z-index: 11;
+    position: relative;
+    display:none;
+
+}
 .developer{
     background: white;
     z-index: 11;
@@ -129,6 +136,17 @@ video#backvid {
     background: url(polina.jpg) no-repeat;
     background-size: cover;
 }
-
-
+.Photoglide{
+  position: relative;
+  top: 50vw;
+}
+.full{
+  position: absolute; top: 0; left: 0; height: 100vw; width: 100%;
+}
+.smllimg{
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
 .

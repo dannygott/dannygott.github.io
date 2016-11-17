@@ -141,7 +141,7 @@ video#backvid {
   top: 50vw;
 }
 .full{
-  position: absolute; top: 0; left: 0; height: 100vw; width: 100%;
+  position: absolute; top: 0; left: 0; height: 150%; width: 100%;
 }
 .smllimg{
   padding-left: 2vw;

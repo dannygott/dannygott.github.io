@@ -29,6 +29,7 @@ function scrollfirst() {
         $(".Photoglide").animate({
             top: "-=50vw",
           }, 1000 );
+        depth = 1
       });
     }
   }
@@ -86,8 +87,10 @@ function checkhover(){
     }
 }
 function resetanimation() {
+  if (depth != 0 ) {
   $(".Photoglide").animate({
       top: "+=50vw",
     }, 2 );
-
+    depth = 0
+}
 }

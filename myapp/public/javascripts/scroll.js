@@ -26,9 +26,11 @@ function scrollfirst() {
             window.location.hash = "#Photographer";
             loaded = ".Photographer"
         });
-        $(".Photoglide").animate({
-            top: "-=50vw",
-          }, 1000 );
+        if (depth == 0) {
+          $(".Photoglide").animate({
+              top: "-=50vw",
+            }, 1000 );
+        }
         depth = 1
       });
     }

@@ -6,6 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Representation</title>
     <style>
+                body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .color-select {
+            margin-bottom: 10px;
+        }
+        .color-select select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            margin-top: 5px;
+        }
         .product-container-r {
             position: relative;
             width: 400px;
@@ -52,120 +78,125 @@
 </head>
 
 <body>
-    <form id="colorForm">
-        Main Color:
-        <select  name="mainColor" onchange="updateColor('mainColor', this.value)">
-            <option value="" selected disabled hidden>Choose here</option>
-    <!-- Previous Appealing Colors -->
-    <option value="#FF5733">Pumpkin Orange</option>
-    <option value="#3498DB">Sky Blue</option>
-    <option value="#2ECC71">Emerald Green</option>
-    <option value="#F1C40F">Sunflower Yellow</option>
-    <option value="#8E44AD">Amethyst Purple</option>
-    <option value="#E74C3C">Terracotta Red</option>
-    <option value="#2C3E50">Midnight Blue</option>
-    <option value="#F39C12">Tangerine</option>
-    <option value="#16A085">Sea Green</option>
-    <option value="#BDC3C7">Silver Cloud</option>
-    <option value="#7F8C8D">Storm Grey</option>
-    <option value="#D35400">Burnt Orange</option>
-    <option value="#C0392B">Crimson Red</option>
-    
-    <!-- Earth Tones -->
-    <option value="#A0522D">Sienna</option>
-    <option value="#8B4513">Saddle Brown</option>
-    <option value="#DEB887">Burlywood</option>
-    <option value="#D2B48C">Tan</option>
-    <option value="#F4A460">Sandy Brown</option>
-    <option value="#CD853F">Peru</option>
-    <option value="#8B0000">Dark Red</option>
-    <option value="#556B2F">Olive Green</option>
-    
-    <!-- Neon Primary Colors -->
-    <option value="#FF5733">Neon Orange</option>
-    <option value="#FFD700">Neon Yellow</option>
-    <option value="#FF6347">Neon Red</option>
-    <option value="#00FF00">Neon Green</option>
-    <option value="#1E90FF">Neon Blue</option>
-    <option value="#FF69B4">Neon Pink</option>
-        </select>
-        <br>
-        Color 1:
-        <select  name="color1" onchange="updateColor('color1', this.value)">
-            <option value="" selected disabled hidden>Choose here</option>
-    <!-- Previous Appealing Colors -->
-    <option value="#FF5733">Pumpkin Orange</option>
-    <option value="#3498DB">Sky Blue</option>
-    <option value="#2ECC71">Emerald Green</option>
-    <option value="#F1C40F">Sunflower Yellow</option>
-    <option value="#8E44AD">Amethyst Purple</option>
-    <option value="#E74C3C">Terracotta Red</option>
-    <option value="#2C3E50">Midnight Blue</option>
-    <option value="#F39C12">Tangerine</option>
-    <option value="#16A085">Sea Green</option>
-    <option value="#BDC3C7">Silver Cloud</option>
-    <option value="#7F8C8D">Storm Grey</option>
-    <option value="#D35400">Burnt Orange</option>
-    <option value="#C0392B">Crimson Red</option>
-    
-    <!-- Earth Tones -->
-    <option value="#A0522D">Sienna</option>
-    <option value="#8B4513">Saddle Brown</option>
-    <option value="#DEB887">Burlywood</option>
-    <option value="#D2B48C">Tan</option>
-    <option value="#F4A460">Sandy Brown</option>
-    <option value="#CD853F">Peru</option>
-    <option value="#8B0000">Dark Red</option>
-    <option value="#556B2F">Olive Green</option>
-    
-    <!-- Neon Primary Colors -->
-    <option value="#FF5733">Neon Orange</option>
-    <option value="#FFD700">Neon Yellow</option>
-    <option value="#FF6347">Neon Red</option>
-    <option value="#00FF00">Neon Green</option>
-    <option value="#1E90FF">Neon Blue</option>
-    <option value="#FF69B4">Neon Pink</option>
-        </select>
-        <br>
-        Color 2:
-        <select  name="color2" onchange="updateColor('color2', this.value)">
-    <!-- Previous Appealing Colors -->
-    <option value="" selected disabled hidden>Choose here</option>
-    <option value="#FF5733">Pumpkin Orange</option>
-    <option value="#3498DB">Sky Blue</option>
-    <option value="#2ECC71">Emerald Green</option>
-    <option value="#F1C40F">Sunflower Yellow</option>
-    <option value="#8E44AD">Amethyst Purple</option>
-    <option value="#E74C3C">Terracotta Red</option>
-    <option value="#2C3E50">Midnight Blue</option>
-    <option value="#F39C12">Tangerine</option>
-    <option value="#16A085">Sea Green</option>
-    <option value="#BDC3C7">Silver Cloud</option>
-    <option value="#7F8C8D">Storm Grey</option>
-    <option value="#D35400">Burnt Orange</option>
-    <option value="#C0392B">Crimson Red</option>
-    
-    <!-- Earth Tones -->
-    <option value="#A0522D">Sienna</option>
-    <option value="#8B4513">Saddle Brown</option>
-    <option value="#DEB887">Burlywood</option>
-    <option value="#D2B48C">Tan</option>
-    <option value="#F4A460">Sandy Brown</option>
-    <option value="#CD853F">Peru</option>
-    <option value="#8B0000">Dark Red</option>
-    <option value="#556B2F">Olive Green</option>
-    
-    <!-- Neon Primary Colors -->
-    <option value="#FF5733">Neon Orange</option>
-    <option value="#FFD700">Neon Yellow</option>
-    <option value="#FF6347">Neon Red</option>
-    <option value="#00FF00">Neon Green</option>
-    <option value="#1E90FF">Neon Blue</option>
-    <option value="#FF69B4">Neon Pink</option>
-        </select>
-        <br>
-      
-    </form>
+    <div class="form-container">
+        <form id="colorForm">
+            <div class="color-select">
+                Main Color:
+                <select name="mainColor" onchange="updateColor('mainColor', this.value)">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <!-- Previous Appealing Colors -->
+                    <option value="#FF5733">Pumpkin Orange</option>
+                    <option value="#3498DB">Sky Blue</option>
+                    <option value="#2ECC71">Emerald Green</option>
+                    <option value="#F1C40F">Sunflower Yellow</option>
+                    <option value="#8E44AD">Amethyst Purple</option>
+                    <option value="#E74C3C">Terracotta Red</option>
+                    <option value="#2C3E50">Midnight Blue</option>
+                    <option value="#F39C12">Tangerine</option>
+                    <option value="#16A085">Sea Green</option>
+                    <option value="#BDC3C7">Silver Cloud</option>
+                    <option value="#7F8C8D">Storm Grey</option>
+                    <option value="#D35400">Burnt Orange</option>
+                    <option value="#C0392B">Crimson Red</option>
+                    
+                    <!-- Earth Tones -->
+                    <option value="#A0522D">Sienna</option>
+                    <option value="#8B4513">Saddle Brown</option>
+                    <option value="#DEB887">Burlywood</option>
+                    <option value="#D2B48C">Tan</option>
+                    <option value="#F4A460">Sandy Brown</option>
+                    <option value="#CD853F">Peru</option>
+                    <option value="#8B0000">Dark Red</option>
+                    <option value="#556B2F">Olive Green</option>
+                    
+                    <!-- Neon Primary Colors -->
+                    <option value="#FF5733">Neon Orange</option>
+                    <option value="#FFD700">Neon Yellow</option>
+                    <option value="#FF6347">Neon Red</option>
+                    <option value="#00FF00">Neon Green</option>
+                    <option value="#1E90FF">Neon Blue</option>
+                    <option value="#FF69B4">Neon Pink</option>
+                </select>
+            </div>
+            <div class="color-select">
+                Color 1:
+                <select name="color1" onchange="updateColor('color1', this.value)">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <!-- Previous Appealing Colors -->
+                    <option value="#FF5733">Pumpkin Orange</option>
+                    <option value="#3498DB">Sky Blue</option>
+                    <option value="#2ECC71">Emerald Green</option>
+                    <option value="#F1C40F">Sunflower Yellow</option>
+                    <option value="#8E44AD">Amethyst Purple</option>
+                    <option value="#E74C3C">Terracotta Red</option>
+                    <option value="#2C3E50">Midnight Blue</option>
+                    <option value="#F39C12">Tangerine</option>
+                    <option value="#16A085">Sea Green</option>
+                    <option value="#BDC3C7">Silver Cloud</option>
+                    <option value="#7F8C8D">Storm Grey</option>
+                    <option value="#D35400">Burnt Orange</option>
+                    <option value="#C0392B">Crimson Red</option>
+                    
+                    <!-- Earth Tones -->
+                    <option value="#A0522D">Sienna</option>
+                    <option value="#8B4513">Saddle Brown</option>
+                    <option value="#DEB887">Burlywood</option>
+                    <option value="#D2B48C">Tan</option>
+                    <option value="#F4A460">Sandy Brown</option>
+                    <option value="#CD853F">Peru</option>
+                    <option value="#8B0000">Dark Red</option>
+                    <option value="#556B2F">Olive Green</option>
+                    
+                    <!-- Neon Primary Colors -->
+                    <option value="#FF5733">Neon Orange</option>
+                    <option value="#FFD700">Neon Yellow</option>
+                    <option value="#FF6347">Neon Red</option>
+                    <option value="#00FF00">Neon Green</option>
+                    <option value="#1E90FF">Neon Blue</option>
+                    <option value="#FF69B4">Neon Pink</option>
+                </select>
+            </div>
+            <div class="color-select">
+                Color 2:
+                <select name="color2" onchange="updateColor('color2', this.value)">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <!-- Previous Appealing Colors -->
+                    <option value="#FF5733">Pumpkin Orange</option>
+                    <option value="#3498DB">Sky Blue</option>
+                    <option value="#2ECC71">Emerald Green</option>
+                    <option value="#F1C40F">Sunflower Yellow</option>
+                    <option value="#8E44AD">Amethyst Purple</option>
+                    <option value="#E74C3C">Terracotta Red</option>
+                    <option value="#2C3E50">Midnight Blue</option>
+                    <option value="#F39C12">Tangerine</option>
+                    <option value="#16A085">Sea Green</option>
+                    <option value="#BDC3C7">Silver Cloud</option>
+                    <option value="#7F8C8D">Storm Grey</option>
+                    <option value="#D35400">Burnt Orange</option>
+                    <option value="#C0392B">Crimson Red</option>
+                    
+                    <!-- Earth Tones -->
+                    <option value="#A0522D">Sienna</option>
+                    <option value="#8B4513">Saddle Brown</option>
+                    <option value="#DEB887">Burlywood</option>
+                    <option value="#D2B48C">Tan</option>
+                    <option value="#F4A460">Sandy Brown</option>
+                    <option value="#CD853F">Peru</option>
+                    <option value="#8B0000">Dark Red</option>
+                    <option value="#556B2F">Olive Green</option>
+                    
+                    <!-- Neon Primary Colors -->
+                    <option value="#FF5733">Neon Orange</option>
+                    <option value="#FFD700">Neon Yellow</option>
+                    <option value="#FF6347">Neon Red</option>
+                    <option value="#00FF00">Neon Green</option>
+                    <option value="#1E90FF">Neon Blue</option>
+                    <option value="#FF69B4">Neon Pink</option>
+                </select>
+            </div>
+
+        </form>
+
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com"
         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/"

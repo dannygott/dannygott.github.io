@@ -205,6 +205,22 @@
                     <option value="#FF69B4">Neon Pink</option>
                 </select>
             </div>
+            <div class="color-select">
+                Logo:
+                <select name="mainColor" onchange="updateLogo(this.value)">
+                    <option value="Classic Yellow.jpg">Classic Yellow</option>
+                    <option value="Classic Blaze.jpg">Classic Blaze</option>
+                    <option value="Classic Charcoal.jpg">Classic Charcoal</option>
+                    <option value="Classic Purple.jpg">Classic Purple</option>
+                    <option value="Classic Salmon.jpg">Classic Salmon</option>
+                    <option value="Classic Teal.jpg">Classic Teal</option>
+                    <option value="Block Neon.jpg">Block Neon</option>
+                    <option value="Block Primary.jpg">Block Primary</option>
+
+                    
+            
+                </select>
+            </div>
 
         </form>
 
@@ -214,10 +230,17 @@
 </body>
 <script>
     var a = document.getElementById("mainSVG");
+    var logo = "Classic Yellow.jpg"
     var colors = {
         "MainColor": "#6d6e71",
         "Color2": "#e6e7e8",
         "Color3": "#231f20"
+    }
+    function updateLogo(newLogo) {
+        var svgDoc = a.contentDocument;
+        var logoElement = svgDoc.getElementById("Logo").children[0].children[0];
+        logoElement.setAttribute("xlink:href", "/Downloads/" + newLogo)
+        logo = newLogo;
     }
     function updateColor(elementId, newColor) {
         var svgDoc = a.contentDocument;
@@ -236,6 +259,11 @@
         // get the inner DOM of alpha.svg
         var svgDoc = a.contentDocument;
         // get the inner element by id
+
+        var logoElement = svgDoc.getElementById("Logo").children[0].children[0];
+        console.log(svgDoc.getElementById("Logo").children[0].children[0])
+        logoElement.setAttribute("xlink:href", "/Downloads/" + logo)
+
         for (const key in colors) {
             if (Object.hasOwnProperty.call(colors, key)) {
                 const element = colors[key];

@@ -81,46 +81,19 @@
     <div class="form-container">
         <form id="colorForm">
             <div class="color-select">
-                Main Color:
-                <select name="mainColor" onchange="updateColor('mainColor', this.value)">
-                    <option value="" selected disabled hidden>Choose here</option>
-                    <!-- Previous Appealing Colors -->
-                    <option value="#FF5733">Pumpkin Orange</option>
-                    <option value="#3498DB">Sky Blue</option>
-                    <option value="#2ECC71">Emerald Green</option>
-                    <option value="#F1C40F">Sunflower Yellow</option>
-                    <option value="#8E44AD">Amethyst Purple</option>
-                    <option value="#E74C3C">Terracotta Red</option>
-                    <option value="#2C3E50">Midnight Blue</option>
-                    <option value="#F39C12">Tangerine</option>
-                    <option value="#16A085">Sea Green</option>
-                    <option value="#BDC3C7">Silver Cloud</option>
-                    <option value="#7F8C8D">Storm Grey</option>
-                    <option value="#D35400">Burnt Orange</option>
-                    <option value="#C0392B">Crimson Red</option>
-                    
-                    <!-- Earth Tones -->
-                    <option value="#A0522D">Sienna</option>
-                    <option value="#8B4513">Saddle Brown</option>
-                    <option value="#DEB887">Burlywood</option>
-                    <option value="#D2B48C">Tan</option>
-                    <option value="#F4A460">Sandy Brown</option>
-                    <option value="#CD853F">Peru</option>
-                    <option value="#8B0000">Dark Red</option>
-                    <option value="#556B2F">Olive Green</option>
-                    
-                    <!-- Neon Primary Colors -->
-                    <option value="#FF5733">Neon Orange</option>
-                    <option value="#FFD700">Neon Yellow</option>
-                    <option value="#FF6347">Neon Red</option>
-                    <option value="#00FF00">Neon Green</option>
-                    <option value="#1E90FF">Neon Blue</option>
-                    <option value="#FF69B4">Neon Pink</option>
+                Style:
+                <select name="mainColor" onchange="updateImage(this.value)">
+                    <option value="Asset 2.svg">Trifecta</option>
+                    <option value="Asset 3.svg">Angles</option>
+                    <option value="Asset 4.svg">Rays</option>
+                    <option value="Asset 5.svg">Racer</option>
+                    <option value="Asset 6.svg">Blank</option>
+
                 </select>
             </div>
             <div class="color-select">
                 Color 1:
-                <select name="color1" onchange="updateColor('color1', this.value)">
+                <select name="mainColor" onchange="updateColor('MainColor', this.value)">
                     <option value="" selected disabled hidden>Choose here</option>
                     <!-- Previous Appealing Colors -->
                     <option value="#FF5733">Pumpkin Orange</option>
@@ -158,7 +131,45 @@
             </div>
             <div class="color-select">
                 Color 2:
-                <select name="color2" onchange="updateColor('color2', this.value)">
+                <select name="color1" onchange="updateColor('Color2', this.value)">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <!-- Previous Appealing Colors -->
+                    <option value="#FF5733">Pumpkin Orange</option>
+                    <option value="#3498DB">Sky Blue</option>
+                    <option value="#2ECC71">Emerald Green</option>
+                    <option value="#F1C40F">Sunflower Yellow</option>
+                    <option value="#8E44AD">Amethyst Purple</option>
+                    <option value="#E74C3C">Terracotta Red</option>
+                    <option value="#2C3E50">Midnight Blue</option>
+                    <option value="#F39C12">Tangerine</option>
+                    <option value="#16A085">Sea Green</option>
+                    <option value="#BDC3C7">Silver Cloud</option>
+                    <option value="#7F8C8D">Storm Grey</option>
+                    <option value="#D35400">Burnt Orange</option>
+                    <option value="#C0392B">Crimson Red</option>
+                    
+                    <!-- Earth Tones -->
+                    <option value="#A0522D">Sienna</option>
+                    <option value="#8B4513">Saddle Brown</option>
+                    <option value="#DEB887">Burlywood</option>
+                    <option value="#D2B48C">Tan</option>
+                    <option value="#F4A460">Sandy Brown</option>
+                    <option value="#CD853F">Peru</option>
+                    <option value="#8B0000">Dark Red</option>
+                    <option value="#556B2F">Olive Green</option>
+                    
+                    <!-- Neon Primary Colors -->
+                    <option value="#FF5733">Neon Orange</option>
+                    <option value="#FFD700">Neon Yellow</option>
+                    <option value="#FF6347">Neon Red</option>
+                    <option value="#00FF00">Neon Green</option>
+                    <option value="#1E90FF">Neon Blue</option>
+                    <option value="#FF69B4">Neon Pink</option>
+                </select>
+            </div>
+            <div class="color-select">
+                Color 3:
+                <select name="color2" onchange="updateColor('Color3', this.value)">
                     <option value="" selected disabled hidden>Choose here</option>
                     <!-- Previous Appealing Colors -->
                     <option value="#FF5733">Pumpkin Orange</option>
@@ -198,72 +209,44 @@
         </form>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com"
-        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/"
-        xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="777" height="480">
-
-        <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="#FFFFFF" stroke="none" />
-        <g class="currentLayer" style="">
-            <title>Layer 1</title>
-            <rect fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="round" stroke-dashoffset=""
-                fill-rule="nonzero" id="mainColor" x="223.92308044433594" y="127.07691955566406" width="329" height="211"
-                style="color: rgb(0, 0, 0);" class="" stroke-opacity="1" fill-opacity="1" rx="8" ry="8" />
-            <rect fill="#e8e841" stroke="#000000" stroke-width="0" stroke-linejoin="round" stroke-dashoffset=""
-                fill-rule="nonzero" id="svg_7" x="498.1373614001386" y="308.4505354166031" width="41.42857098579407"
-                height="20.714285492897034" style="color: rgb(108, 108, 108);" class="" fill-opacity="1" />
-            <path fill="#e8e841" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M387.2769216423563,131.71795216696543L391.1230755149619,337.48718435136595" id="svg_10" />
-            <path fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M606.5076923808764,72.10256714157839L265.161536187128,50.948720842247496" id="svg_14" />
-            <path fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M254.58461303746253,54.79487471485311L270.93076699603637,54.79487471485311" id="svg_16" />
-            <path fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M276.6999978049448,55.7564131830045L444.00769126328913,69.21795173712417" id="svg_18" />
-            <path fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M438.2384604543807,64.41025939636714L454.5846144129546,86.52564416384945" id="svg_20" />
-            <path fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M117.08461209181172,143.25641378478227L120.93076596441733,292.2948763482499" id="svg_22" />
-            <rect fill="#484848" stroke="#000000" stroke-width="0" stroke-linejoin="round" stroke-dashoffset=""
-                fill-rule="nonzero" id="svg_26" x="390.8241665363312" y="128.6263689994812" width="6.142857074737549"
-                height="207.84615403338648" style="color: rgb(147, 147, 147);" class="" fill-opacity="1" />
-            <path fill="#484848" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end=""
-                d="M164.19999703123054,87.48718263200084L187.27692026686424,161.52564467965894" id="svg_30" />
-            <path fill="#484848" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" id="color2"
-                d="M224.34469,289.15934L224.42857,175.39011L371.15385,338.46154L329.98901,337.89011L224.34469,289.15934z"
-                style="color: rgb(174, 168, 168);" class="" />
-            <path fill="#ebeb1a" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" id="color1"
-                d="M223.67618,205.33333L224,263.42857L340.57143,338.28571L359.42857,337.71429L223.67618,205.33333z"
-                style="color: rgb(158, 138, 138);" class="" />
-            <path fill="#484848" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="0"
-                stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset=""
-                fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" id="svg_6"
-                d="M241.9618975889113,256.1904686462314 " style="color: rgb(143, 139, 139);" />
-        </g>
-    </svg>
+        <object data="/Images/SVG/Asset 2.svg" width="300" height="300" id="mainSVG"> </object>
 
 </body>
 <script>
-    function updateColor(elementId, newColor) {
-        document.getElementById(elementId).setAttribute("fill", newColor)
+    var a = document.getElementById("mainSVG");
+    var colors = {
+        "MainColor": "#6d6e71",
+        "Color2": "#e6e7e8",
+        "Color3": "#231f20"
     }
+    function updateColor(elementId, newColor) {
+        var svgDoc = a.contentDocument;
+        // get the inner element by id
+        var delta = svgDoc.getElementById(elementId);
+        for (const child of delta.children) {
+            child.setAttribute("style", "fill:" + newColor)
+        }
+        colors[elementId] = newColor;
+
+    }
+    function updateImage(img) {
+        a.setAttribute("data", "/Images/SVG/" + img)
+    }
+    a.addEventListener("load", function () {
+        // get the inner DOM of alpha.svg
+        var svgDoc = a.contentDocument;
+        // get the inner element by id
+        for (const key in colors) {
+            if (Object.hasOwnProperty.call(colors, key)) {
+                const element = colors[key];
+                console.log(key)
+                var delta = svgDoc.getElementById(key);
+                for(const child of delta.children) {
+                       child.setAttribute("style", "fill:" + element)
+                }
+            }
+        }
+    }, false);
 </script>
+
 </html>

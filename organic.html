@@ -78,11 +78,25 @@
 </head>
 
 <body>
+    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+            <pattern id="camo" patternUnits="userSpaceOnUse" x="0" y="0" width="1112" height="100%">
+                <image xlink:href="/Images/Camo/Covert.avif" width="100%" height="100%"
+                    preserveAspectRatio="xMinYMid slice" />
+            </pattern>
+        </defs>
+    </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path xmlns="http://www.w3.org/2000/svg" class="cls-5"
+        d="M837.92,350.93,439.44,556H810.65a27.27,27.27,0,0,0,27.27-27.28Z" style="fill:##231f20"
+        fill="url(#camo)" />
+        </svg>
+
     <div class="form-container">
         <form id="colorForm">
             <div class="color-select">
-                Style:
-                <select name="mainColor" onchange="updateImage(this.value)">
+                Design Selection:
+                <select name="mainColor" onchange="updateImage(this.value)" >
                     <option value="Asset 2.svg">Trifecta</option>
                     <option value="Asset 3.svg">Angles</option>
                     <option value="Asset 4.svg">Rays</option>
@@ -92,121 +106,27 @@
                 </select>
             </div>
             <div class="color-select">
-                Color 1:
-                <select name="mainColor" onchange="updateColor('MainColor', this.value)">
+                Background Color:
+                <select name="mainColor" onchange="updateColor('MainColor', this.value)" class="color-list">
                     <option value="" selected disabled hidden>Choose here</option>
-                    <!-- Previous Appealing Colors -->
-                    <option value="#FF5733">Pumpkin Orange</option>
-                    <option value="#3498DB">Sky Blue</option>
-                    <option value="#2ECC71">Emerald Green</option>
-                    <option value="#F1C40F">Sunflower Yellow</option>
-                    <option value="#8E44AD">Amethyst Purple</option>
-                    <option value="#E74C3C">Terracotta Red</option>
-                    <option value="#2C3E50">Midnight Blue</option>
-                    <option value="#F39C12">Tangerine</option>
-                    <option value="#16A085">Sea Green</option>
-                    <option value="#BDC3C7">Silver Cloud</option>
-                    <option value="#7F8C8D">Storm Grey</option>
-                    <option value="#D35400">Burnt Orange</option>
-                    <option value="#C0392B">Crimson Red</option>
-                    
-                    <!-- Earth Tones -->
-                    <option value="#A0522D">Sienna</option>
-                    <option value="#8B4513">Saddle Brown</option>
-                    <option value="#DEB887">Burlywood</option>
-                    <option value="#D2B48C">Tan</option>
-                    <option value="#F4A460">Sandy Brown</option>
-                    <option value="#CD853F">Peru</option>
-                    <option value="#8B0000">Dark Red</option>
-                    <option value="#556B2F">Olive Green</option>
-                    
-                    <!-- Neon Primary Colors -->
-                    <option value="#FF5733">Neon Orange</option>
-                    <option value="#FFD700">Neon Yellow</option>
-                    <option value="#FF6347">Neon Red</option>
-                    <option value="#00FF00">Neon Green</option>
-                    <option value="#1E90FF">Neon Blue</option>
-                    <option value="#FF69B4">Neon Pink</option>
+
                 </select>
             </div>
             <div class="color-select">
-                Color 2:
-                <select name="color1" onchange="updateColor('Color2', this.value)">
+                Accent Color 1:
+                <select name="color1" onchange="updateColor('Color2', this.value)" class="color-list">
                     <option value="" selected disabled hidden>Choose here</option>
-                    <!-- Previous Appealing Colors -->
-                    <option value="#FF5733">Pumpkin Orange</option>
-                    <option value="#3498DB">Sky Blue</option>
-                    <option value="#2ECC71">Emerald Green</option>
-                    <option value="#F1C40F">Sunflower Yellow</option>
-                    <option value="#8E44AD">Amethyst Purple</option>
-                    <option value="#E74C3C">Terracotta Red</option>
-                    <option value="#2C3E50">Midnight Blue</option>
-                    <option value="#F39C12">Tangerine</option>
-                    <option value="#16A085">Sea Green</option>
-                    <option value="#BDC3C7">Silver Cloud</option>
-                    <option value="#7F8C8D">Storm Grey</option>
-                    <option value="#D35400">Burnt Orange</option>
-                    <option value="#C0392B">Crimson Red</option>
-                    
-                    <!-- Earth Tones -->
-                    <option value="#A0522D">Sienna</option>
-                    <option value="#8B4513">Saddle Brown</option>
-                    <option value="#DEB887">Burlywood</option>
-                    <option value="#D2B48C">Tan</option>
-                    <option value="#F4A460">Sandy Brown</option>
-                    <option value="#CD853F">Peru</option>
-                    <option value="#8B0000">Dark Red</option>
-                    <option value="#556B2F">Olive Green</option>
-                    
-                    <!-- Neon Primary Colors -->
-                    <option value="#FF5733">Neon Orange</option>
-                    <option value="#FFD700">Neon Yellow</option>
-                    <option value="#FF6347">Neon Red</option>
-                    <option value="#00FF00">Neon Green</option>
-                    <option value="#1E90FF">Neon Blue</option>
-                    <option value="#FF69B4">Neon Pink</option>
+
                 </select>
             </div>
             <div class="color-select">
-                Color 3:
-                <select name="color2" onchange="updateColor('Color3', this.value)">
+                Accent Color 2:
+                <select name="color2" onchange="updateColor('Color3', this.value)" class="color-list">
                     <option value="" selected disabled hidden>Choose here</option>
-                    <!-- Previous Appealing Colors -->
-                    <option value="#FF5733">Pumpkin Orange</option>
-                    <option value="#3498DB">Sky Blue</option>
-                    <option value="#2ECC71">Emerald Green</option>
-                    <option value="#F1C40F">Sunflower Yellow</option>
-                    <option value="#8E44AD">Amethyst Purple</option>
-                    <option value="#E74C3C">Terracotta Red</option>
-                    <option value="#2C3E50">Midnight Blue</option>
-                    <option value="#F39C12">Tangerine</option>
-                    <option value="#16A085">Sea Green</option>
-                    <option value="#BDC3C7">Silver Cloud</option>
-                    <option value="#7F8C8D">Storm Grey</option>
-                    <option value="#D35400">Burnt Orange</option>
-                    <option value="#C0392B">Crimson Red</option>
-                    
-                    <!-- Earth Tones -->
-                    <option value="#A0522D">Sienna</option>
-                    <option value="#8B4513">Saddle Brown</option>
-                    <option value="#DEB887">Burlywood</option>
-                    <option value="#D2B48C">Tan</option>
-                    <option value="#F4A460">Sandy Brown</option>
-                    <option value="#CD853F">Peru</option>
-                    <option value="#8B0000">Dark Red</option>
-                    <option value="#556B2F">Olive Green</option>
-                    
-                    <!-- Neon Primary Colors -->
-                    <option value="#FF5733">Neon Orange</option>
-                    <option value="#FFD700">Neon Yellow</option>
-                    <option value="#FF6347">Neon Red</option>
-                    <option value="#00FF00">Neon Green</option>
-                    <option value="#1E90FF">Neon Blue</option>
-                    <option value="#FF69B4">Neon Pink</option>
                 </select>
             </div>
             <div class="color-select">
-                Logo:
+                Logo Selection:
                 <select name="mainColor" onchange="updateLogo(this.value)">
                     <option value="Classic Yellow.jpg">Classic Yellow</option>
                     <option value="Classic Blaze.jpg">Classic Blaze</option>
@@ -228,6 +148,44 @@
         <object data="/Images/SVG/Asset 2.svg" width="300" height="300" id="mainSVG"> </object>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                Papa.parse('/ColorSheet.csv', {
+                    download: true,
+                    header: true,
+                    complete: function (results) {
+                        var colorDropdowns = document.getElementsByClassName("color-list");
+                        var logoDropdown = document.getElementsByClassName("logo-list");
+                        var styleDropdown = document.getElementsByClassName("style-list");
+                        for (var i = 0; i < colorDropdowns.length; i++) {
+                            results.data.forEach(function (row) {
+                                var option = document.createElement('option');
+                                option.textContent = row['Color Name'];
+                                option.value = row['Hexdecimal Code'];
+                                colorDropdowns.item(i).appendChild(option);
+                            });
+                        }
+                        results.data.forEach(function (row) {
+                            var option = document.createElement('option');
+                            option.textContent = row['Style Name'];
+                            option.value = row['SVG File Name'];
+                            logoDropdown.item(i).appendChild(option);
+                        });
+                        results.data.forEach(function (row) {
+                            var option = document.createElement('option');
+                            option.textContent = row['Logo Name'];
+                            option.value = row['Logo File Name'];
+                            logoDropdown.item(i).appendChild(option);
+                        });
+
+
+                    }
+                });
+            });
+    </script>
+
 <script>
     var a = document.getElementById("mainSVG");
     var logo = "Classic Yellow.jpg"
@@ -246,10 +204,21 @@
         var svgDoc = a.contentDocument;
         // get the inner element by id
         var delta = svgDoc.getElementById(elementId);
+        
         for (const child of delta.children) {
-            child.setAttribute("style", "fill:" + newColor)
+            if (newColor.includes(".avif") || newColor.includes(".webp") || newColor.includes(".jpg") || newColor.includes(".png")){
+                child.setAttribute("style", "fill: url(#"+ elementId + "-Camo"+")")
+                console.log("fill: url(#" + elementId + "-Camo" + ")")
+                var camo = svgDoc.getElementById(elementId + "-Camo").children[0];
+                camo.setAttribute("xlink:href", "/Images/Camo/" + newColor)
+                console.log("SET CAMO")
+            }else{
+                child.setAttribute("style", "fill:" + "#" + newColor)
+            }
+
         }
         colors[elementId] = newColor;
+        console.log(colors) 
 
     }
     function updateImage(img) {
@@ -269,8 +238,18 @@
                 const element = colors[key];
                 console.log(key)
                 var delta = svgDoc.getElementById(key);
-                for(const child of delta.children) {
-                       child.setAttribute("style", "fill:" + element)
+
+                for (const child of delta.children) {
+                    if (element.includes(".avif") || element.includes(".webp") || element.includes(".jpg") || element.includes(".png")) {
+                        child.setAttribute("style", "fill: url(#" + key + "-Camo" + ")")
+                        console.log("fill: url(#" + key + "-Camo" + ")")
+                        console.log(key+"-Camo")
+                        var camo = svgDoc.getElementById(key + "-Camo").children[0];
+                        camo.setAttribute("xlink:href", "/Images/Camo/" + element)
+                        console.log("SET CAMO")
+                    } else {
+                        child.setAttribute("style", "fill:" + "#" + element)
+                    }
                 }
             }
         }

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Blind Charging System — Proposal for Hyatt Newark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --cream: #faf7f2;
+    --cream-dark: #f0ebe0;
+    --slate: #4a5568;
+    --rule: #d4c9b0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @media print {
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    body {
+      background: white !important;
+      padding: 0 !important;
+    }
+
+    .no-print { display: none !important; }
+    .print-bar { display: none !important; }
+
+    .page {
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    /* Cover always on its own page */
+    .cover {
+      page-break-after: always;
+      break-after: page;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* Sections: avoid breaking inside, prefer new page if needed */
+    .section {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Features grid and steps: avoid splits */
+    .features-grid,
+    .steps,
+    .pricing-table,
+    .signature-block {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Keep section headings with their content */
+    .section-header {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    h2 {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* Footer stays with preceding content */
+    .footer {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Ensure body padding is tighter on print */
+    .body {
+      padding: 40px 60px 50px !important;
+    }
+  }
+
+  body {
+    background: #e8e2d8;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 4px;
+    box-shadow: 0 8px 60px rgba(0,0,0,0.18);
+    overflow: hidden;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: var(--ink);
+    padding: 70px 70px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cover-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 52px;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cover-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(250,247,242,0.5);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 50px;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 28px;
+  }
+
+  .cover-meta-item {
+    padding-right: 30px;
+  }
+
+  .cover-meta-item + .cover-meta-item {
+    padding-left: 30px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .cover-meta-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.7);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .cover-meta-value {
+    font-size: 13px;
+    color: rgba(250,247,242,0.85);
+    font-weight: 300;
+  }
+
+  /* ─── BODY ─── */
+  .body {
+    padding: 60px 70px 70px;
+  }
+
+  /* ─── PAGE GROUP: forces grouped sections onto one print page ─── */
+  .page-group {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  @media print {
+    /* Force page 3 to start at the Beta Program section */
+    .section-break-before {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    /* Tighten spacing inside the page-group so 01+02 fit on one page */
+    .page-group .section {
+      margin-bottom: 32px;
+    }
+
+    .page-group .callout {
+      margin: 16px 0;
+    }
+
+    .page-group p {
+      margin-bottom: 8px;
+    }
+  }
+
+  .section {
+    margin-bottom: 52px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--slate);
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .callout p {
+    margin-bottom: 0;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ─── FEATURES GRID ─── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .feature-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 20px 22px;
+  }
+
+  .feature-icon {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--slate);
+    margin-bottom: 0;
+  }
+
+  /* ─── PRICING TABLE ─── */
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+
+  .pricing-table th {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    padding: 0 0 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pricing-table th:last-child,
+  .pricing-table td:last-child {
+    text-align: right;
+  }
+
+  .pricing-table td {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    color: var(--slate);
+    font-weight: 300;
+    vertical-align: top;
+  }
+
+  .pricing-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .pricing-table td.item-name {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .pricing-table tfoot td {
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    border-bottom: none;
+  }
+
+  .pricing-table tfoot .total-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .pricing-table tfoot .total-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ─── BETA PROGRAM STEPS ─── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 16px 0;
+  }
+
+  .step-num {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body h3 {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+    padding-top: 8px;
+  }
+
+  .step-body p {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 0;
+  }
+
+  /* ─── SIGNATURE ─── */
+  .signature-block {
+    border-top: 1px solid var(--rule);
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .sig-field label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  .sig-line {
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 8px;
+  }
+
+  .sig-field .sig-name {
+    font-size: 12px;
+    color: var(--slate);
+    font-weight: 300;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    padding: 28px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: rgba(250,247,242,0.6);
+    font-style: italic;
+  }
+
+  .footer-right {
+    font-size: 11px;
+    color: rgba(250,247,242,0.4);
+    text-align: right;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── PRINT BUTTON ─── */
+  .print-bar {
+    max-width: 860px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--gold);
+  }
+
+  .btn-primary:hover { background: #2a2a4e; }
+
+  /* ─── HIGHLIGHT ─── */
+  .highlight { color: var(--gold); font-weight: 500; }
+
+  .tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <button class="btn btn-primary" onclick="window.print()">⬡ Print / Save PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-label">Commercial Proposal — Confidential</div>
+    <h1>Solar-Powered<br><em>Blind Charging</em><br>System</h1>
+    <div class="cover-subtitle">Autonomous energy management for battery-operated motorized window treatments</div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Prepared For</div>
+        <div class="cover-meta-value">Ty Grant<br>Hyatt — Newark, DE</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Prepared By</div>
+        <div class="cover-meta-value">Daniel<br>New River Scanning LLC</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Proposal Date</div>
+        <div class="cover-meta-value">March 31, 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- PAGE GROUP: Executive Summary + How It Works on one page -->
+    <div class="page-group">
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <div class="section-rule"></div>
+      </div>
+      <h2>Executive Summary</h2>
+      <p>Dear Mr. Grant,</p>
+      <p>Thank you for the opportunity to present this proposal. Battery-powered motorized blinds deliver a premium guest experience, but their ongoing maintenance — manually swapping and charging batteries room by room — places a quiet but persistent burden on your housekeeping and facilities teams.</p>
+      <p>This proposal outlines a <span class="highlight">Solar-Powered Blind Charging System</span> designed to eliminate that burden entirely. Each unit harvests ambient and direct light to keep blind batteries continuously topped off, removing the need for manual intervention and reducing the risk of batteries running flat mid-stay.</p>
+
+      <div class="callout">
+        <p>We propose a 5-unit pilot program to validate performance across a sample of your rooms before any larger commitment — with a clear path to full-property rollout.</p>
+      </div>
+    </div>
+
+    <!-- PRODUCT OVERVIEW -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="tag">Product Overview</div>
+      <h2>How It Works</h2>
+      <p>Each unit is a compact, self-contained charging module that installs discreetly alongside your existing motorized blind system. A solar panel — sized for typical window exposure — feeds an onboard charge controller that maintains optimal battery voltage at all times.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">☀️</span>
+          <h3>Continuous Solar Harvest</h3>
+          <p>Captures both direct sunlight and diffuse indoor ambient light through an efficient MPPT charge controller, maintaining battery health year-round.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔋</span>
+          <h3>Intelligent Charge Management</h3>
+          <p>Onboard current sensing prevents overcharge and deep discharge, extending the service life of your blinds' batteries significantly.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔧</span>
+          <h3>Low-Profile Installation</h3>
+          <p>Designed to integrate cleanly with existing window treatments. No major modifications to walls, frames, or existing blind hardware required.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📈</span>
+          <h3>Scalable Architecture</h3>
+          <p>Each unit operates independently. A pilot of 5 rooms can expand to every room in the property with no systemic changes.</p>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /page-group -->
+
+    <!-- BETA PROGRAM -->
+    <div class="section section-break-before">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="tag">Beta Pilot Program</div>
+      <h2>The 5-Unit Pilot</h2>
+      <p>Rather than ask for a full-property commitment upfront, we're proposing a structured pilot that lets the system prove itself in your specific environment before any broader rollout decision.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Room Selection</h3>
+            <p>Together we identify 5 rooms with varying sun exposure to test performance across real-world conditions at your property.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Installation</h3>
+            <p>Units are installed with minimal disruption — typically under 30 minutes per room. No rewiring or structural work required.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Monitoring Period</h3>
+            <p>Over 30–60 days, we track battery state across the 5 rooms and compare maintenance calls against your baseline. You'll see the impact in your own data.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Rollout Decision</h3>
+            <p>With pilot results in hand, you have full information to decide on a property-wide deployment — with preferred pricing locked in for beta participants.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVESTMENT -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <div class="section-rule"></div>
+      </div>
+      <h2>Investment</h2>
+      <p>The pilot program is structured to keep the decision low-risk. Pricing below covers hardware, installation support, and direct access to our team throughout the pilot period.</p>
+
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="item-name">Solar Blind Charging Unit</td>
+            <td>5</td>
+            <td>$59.00</td>
+            <td>$295.00</td>
+          </tr>
+          <tr>
+            <td class="item-name">Installation Support &amp; Commissioning</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td class="item-name">Pilot Period Technical Support (60 days)</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td class="item-name">Preferred Pricing Lock-In for Full Rollout</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Included</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="total-label">Pilot Program Total</td>
+            <td class="total-value">$295.00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- ROI -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <div class="section-rule"></div>
+      </div>
+      <h2>Value &amp; Return</h2>
+      <p>The business case for automated blind charging compounds quickly at scale. Even conservative estimates show clear value:</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">⏱</span>
+          <h3>Reduced Labor</h3>
+          <p>Eliminating manual battery checks and swaps across dozens of rooms saves measurable housekeeping hours each week — time better spent on guest experience.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🪟</span>
+          <h3>No More Guest Complaints</h3>
+          <p>A blind that won't operate is a minor but memorable service failure. Continuous charging means the system simply works — every time, for every guest.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌱</span>
+          <h3>Sustainability Story</h3>
+          <p>Solar-powered room automation aligns with hotel sustainability initiatives and is a differentiator worth communicating to guests.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💰</span>
+          <h3>Battery Longevity</h3>
+          <p>Intelligent charge management reduces battery replacement frequency, cutting ongoing supply costs across the property over time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <div class="section-rule"></div>
+      </div>
+      <h2>Next Steps</h2>
+      <p>We'd welcome the opportunity to walk through the product with you in person, answer any technical questions, and identify the best 5 rooms for the pilot. We can move quickly — units are available for immediate delivery.</p>
+      <p>To proceed, simply sign below or reach out directly to discuss any modifications to the scope or terms. We're happy to be flexible to make this a smooth entry point for your team.</p>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="section">
+      <div class="signature-block">
+        <div class="sig-field">
+          <label>Authorized — New River Scanning LLC</label>
+          <div class="sig-line"></div>
+          <div class="sig-name">Daniel &nbsp;·&nbsp; New River Scanning LLC</div>
+        </div>
+        <div class="sig-field">
+          <label>Accepted — Hyatt Newark</label>
+          <div class="sig-line"></div>
+          <div class="sig-name">Ty Grant &nbsp;·&nbsp; Hyatt, Main St., Newark, DE</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">New River Scanning LLC</div>
+    <div class="footer-right">
+      Newark, Delaware<br>
+      Proposal valid for 30 days from date of issue
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>

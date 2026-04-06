@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Department Training Manual — Print Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════
+   SCREEN PREVIEW — mimics print layout
+══════════════════════════════════════════ */
+:root {
+  --ink:        #0f1923;
+  --ink-mid:    #2e3f50;
+  --ink-light:  #556677;
+  --amber:      #c47f00;
+  --amber-bg:   #fdf3dc;
+  --amber-rule: #e8a800;
+  --steel:      #2a4a72;
+  --steel-bg:   #edf2f8;
+  --red:        #b91c2a;
+  --red-bg:     #fdf0f1;
+  --green:      #166451;
+  --green-bg:   #edf7f5;
+  --rule:       #c8d4de;
+  --page-bg:    #ffffff;
+  --body-bg:    #d8dde2;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--body-bg); }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  font-size: 10pt;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--body-bg);
+}
+
+/* Page wrapper — screen simulation only */
+@media screen {
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: var(--page-bg);
+    margin: 20px auto;
+    padding: 0.75in 0.85in;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    position: relative;
+  }
+
+  .cover {
+    background: var(--page-bg);
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Footer is absolute-positioned within the page div on screen */
+  .page-footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.85in;
+    right: 0.85in;
+  }
+}
+
+/* Running header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5pt solid var(--ink);
+  padding-bottom: 6pt;
+  margin-bottom: 24pt;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7.5pt;
+  color: var(--ink-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-header strong { color: var(--ink); }
+
+/* Footer — base properties shared by screen and print */
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 0.75pt solid var(--rule);
+  padding-top: 6pt;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7pt;
+  color: var(--ink-light);
+}
+
+
+.cover-stripe {
+  background: var(--ink);
+  padding: 0.65in 0.85in 0.5in;
+}
+
+.cover-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber-rule);
+  margin-bottom: 14pt;
+}
+
+.cover-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 52pt;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.cover-title em {
+  color: var(--amber-rule);
+  font-style: normal;
+}
+
+.cover-sub {
+  font-family: 'Barlow', sans-serif;
+  font-size: 13pt;
+  font-weight: 300;
+  color: #8fa8bf;
+  margin-top: 10pt;
+  letter-spacing: 0.04em;
+}
+
+.cover-body {
+  padding: 0.4in 0.85in 0.75in;
+  flex: 1;
+}
+
+.cover-stats {
+  display: flex;
+  gap: 0;
+  border: 1pt solid var(--rule);
+  border-radius: 4pt;
+  overflow: hidden;
+  margin-bottom: 24pt;
+}
+
+.cover-stat {
+  flex: 1;
+  padding: 14pt 16pt;
+  border-right: 1pt solid var(--rule);
+  text-align: center;
+}
+
+.cover-stat:last-child { border-right: none; }
+
+.cover-stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 30pt;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  display: block;
+}
+
+.cover-stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-light);
+  margin-top: 3pt;
+  display: block;
+}
+
+.cover-meta {
+  border-top: 1pt solid var(--rule);
+  padding-top: 14pt;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8pt 24pt;
+  font-size: 9pt;
+}
+
+.cover-meta-item { display: flex; gap: 6pt; }
+.cover-meta-label { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.cover-meta-value { color: var(--ink-light); }
+
+.cover-disclaimer {
+  margin-top: 24pt;
+  padding: 10pt 14pt;
+  background: var(--amber-bg);
+  border-left: 3pt solid var(--amber);
+  font-size: 8.5pt;
+  color: var(--ink-mid);
+}
+
+/* ══════════════════════════════════════════
+   TABLE OF CONTENTS
+══════════════════════════════════════════ */
+.toc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22pt;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  margin-bottom: 18pt;
+  padding-bottom: 8pt;
+  border-bottom: 2pt solid var(--ink);
+}
+
+.toc-group { margin-bottom: 14pt; }
+
+.toc-group-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 4pt;
+  padding-bottom: 3pt;
+  border-bottom: 0.5pt solid var(--rule);
+}
+
+.toc-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  padding: 3.5pt 0;
+  font-size: 10pt;
+  border-bottom: 0.5pt dotted var(--rule);
+}
+
+.toc-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8pt;
+  color: var(--amber);
+  font-weight: 500;
+  width: 30pt;
+  flex-shrink: 0;
+}
+
+.toc-label { flex: 1; color: var(--ink); font-weight: 500; }
+
+.toc-dots {
+  flex: 1;
+  border-bottom: 1pt dotted var(--rule);
+  margin: 0 6pt;
+  margin-bottom: 3pt;
+}
+
+.toc-page {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8pt;
+  color: var(--ink-light);
+  width: 20pt;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════
+   SECTION HEADERS
+══════════════════════════════════════════ */
+.section-banner {
+  background: var(--ink);
+  margin: 14pt -0.85in 24pt;
+  padding: 14pt 0.85in 12pt;
+  display: flex;
+  align-items: baseline;
+  gap: 14pt;
+}
+
+.section-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8pt;
+  color: var(--amber-rule);
+  letter-spacing: 0.15em;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24pt;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.section-desc {
+  font-size: 9pt;
+  color: var(--ink-light);
+  margin-bottom: 16pt;
+  font-style: italic;
+  max-width: 5.5in;
+}
+
+/* ══════════════════════════════════════════
+   STEPS
+══════════════════════════════════════════ */
+.steps { list-style: none; }
+
+.step {
+  display: flex;
+  gap: 10pt;
+  padding: 8pt 0;
+  border-bottom: 0.5pt solid var(--rule);
+}
+
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  width: 22pt; height: 22pt;
+  border: 1.5pt solid var(--steel);
+  border-radius: 3pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--steel);
+  flex-shrink: 0;
+  margin-top: 1pt;
+}
+
+.step-content { flex: 1; }
+.step-action { font-weight: 600; color: var(--ink); font-size: 10.5pt; }
+.step-detail { font-size: 9pt; color: var(--ink-mid); margin-top: 3pt; line-height: 1.5; }
+
+/* ══════════════════════════════════════════
+   CALLOUTS
+══════════════════════════════════════════ */
+.callout {
+  border-radius: 3pt;
+  padding: 9pt 12pt;
+  margin: 10pt 0;
+  display: flex;
+  gap: 9pt;
+  align-items: flex-start;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+
+.callout-warn  { background: var(--amber-bg); border: 1pt solid var(--amber); color: #7a4800; }
+.callout-danger{ background: var(--red-bg);   border: 1pt solid var(--red);   color: var(--red); }
+.callout-info  { background: var(--steel-bg); border: 1pt solid var(--steel); color: var(--steel); }
+.callout-green { background: var(--green-bg); border: 1pt solid var(--green); color: var(--green); }
+
+.callout-icon { font-size: 12pt; flex-shrink: 0; line-height: 1.3; }
+
+/* ══════════════════════════════════════════
+   CARDS / BOXES
+══════════════════════════════════════════ */
+.card {
+  border: 1pt solid var(--rule);
+  border-radius: 4pt;
+  padding: 12pt 14pt;
+  margin-bottom: 10pt;
+  break-inside: avoid;
+}
+
+.card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--steel);
+  margin-bottom: 9pt;
+  padding-bottom: 5pt;
+  border-bottom: 1pt solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 7pt;
+}
+
+.card-title .bar {
+  width: 4pt; height: 14pt;
+  background: var(--amber);
+  flex-shrink: 0;
+  border-radius: 2pt;
+}
+
+/* ══════════════════════════════════════════
+   CHECKLISTS
+══════════════════════════════════════════ */
+.checklist { list-style: none; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9pt;
+  padding: 7pt 0;
+  border-bottom: 0.5pt solid var(--rule);
+  font-size: 9.5pt;
+}
+
+.check-item:last-child { border-bottom: none; }
+
+.check-box {
+  width: 13pt; height: 13pt;
+  border: 1.5pt solid var(--ink-light);
+  border-radius: 2pt;
+  flex-shrink: 0;
+  margin-top: 1pt;
+}
+
+.check-label strong { display: block; color: var(--ink); font-weight: 600; font-size: 10pt; }
+.check-label span   { font-size: 8.5pt; color: var(--ink-light); }
+
+/* ══════════════════════════════════════════
+   TABLES
+══════════════════════════════════════════ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  break-inside: avoid;
+}
+
+th {
+  background: var(--steel-bg);
+  padding: 6pt 9pt;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  border-bottom: 1.5pt solid var(--steel);
+}
+
+td {
+  padding: 6pt 9pt;
+  border-bottom: 0.5pt solid var(--rule);
+  color: var(--ink);
+}
+
+tr:nth-child(even) td { background: #f7f9fb; }
+
+.td-good  { color: var(--green);  font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
+.td-label { color: var(--ink);    font-weight: 600; }
+.td-code  { font-family: 'IBM Plex Mono', monospace; font-size: 8.5pt; }
+
+/* ══════════════════════════════════════════
+   GRID LAYOUTS
+══════════════════════════════════════════ */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10pt; }
+
+/* ══════════════════════════════════════════
+   FLOOR MAP SPECIFIC
+══════════════════════════════════════════ */
+.floor-maps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10pt;
+  margin-bottom: 12pt;
+}
+
+.floor-map-wrap {
+  border: 1pt solid var(--rule);
+  border-radius: 4pt;
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.floor-map-label {
+  background: var(--ink);
+  padding: 5pt 9pt;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7.5pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber-rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.floor-map-label span { color: #8fa8bf; font-size: 7pt; }
+
+/* ══════════════════════════════════════════
+   WORK ORDER FLOW
+══════════════════════════════════════════ */
+.flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1pt solid var(--rule);
+  border-radius: 4pt;
+  overflow: hidden;
+  margin: 10pt 0;
+  break-inside: avoid;
+}
+
+.flow-step {
+  flex: 1;
+  padding: 10pt 12pt;
+  border-right: 1pt solid var(--rule);
+  text-align: center;
+}
+
+.flow-step:last-child { border-right: none; }
+
+.flow-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.flow-desc { font-size: 8pt; color: var(--ink-light); margin-top: 2pt; }
+.flow-arrow { display: flex; align-items: center; color: var(--rule); font-size: 18pt; padding: 0 4pt; }
+
+.flow-new      .flow-label { color: var(--ink-light); }
+.flow-progress .flow-label { color: var(--amber); }
+.flow-pending  .flow-label { color: #b86e00; }
+.flow-done     .flow-label { color: var(--green); }
+.flow-new      { background: #f8f9fa; }
+.flow-progress { background: var(--amber-bg); }
+.flow-pending  { background: #fff8ee; }
+.flow-done     { background: var(--green-bg); }
+
+/* ══════════════════════════════════════════
+   UTILITY
+══════════════════════════════════════════ */
+.col-left  { color: var(--ink-light); }
+.tag {
+  display: inline-block;
+  padding: 1pt 6pt;
+  border-radius: 2pt;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7pt;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tag-am    { background: var(--amber-bg); color: var(--amber); border: 0.5pt solid var(--amber); }
+.tag-daily { background: var(--steel-bg); color: var(--steel); border: 0.5pt solid var(--steel); }
+
+.mono { font-family: 'IBM Plex Mono', monospace; font-size: 8.5pt; }
+
+.code-box {
+  background: #f3f5f7;
+  border: 1pt solid var(--rule);
+  border-radius: 3pt;
+  padding: 9pt 12pt;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5pt;
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 8pt 0;
+}
+
+.code-box.good { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.code-box.bad  { background: var(--red-bg);   border-color: var(--red);   color: var(--red); }
+
+.pill-row { display: flex; gap: 6pt; flex-wrap: wrap; margin: 8pt 0; }
+
+.pill {
+  padding: 4pt 10pt;
+  border: 1pt solid var(--rule);
+  border-radius: 3pt;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8pt;
+  color: var(--ink-mid);
+  background: #f7f9fb;
+}
+
+/* ══════════════════════════════════════════
+   PRINT RULES
+══════════════════════════════════════════ */
+@media print {
+  html, body {
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* No min-height here — padding a div to exactly 11in forces a double break:
+     one natural break at the page boundary + the explicit break-before on the
+     next sibling = blank page. Let pages be as tall as their content. */
+  .page {
+    width: 100%;
+    padding: 0.65in 0.75in;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  /* Force a new physical page before every .page div after the first. */
+  .page ~ .page {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  /* Cover: restore flex so cover-body fills remaining space */
+  .cover {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-stripe {
+    padding: 0.6in 0.75in 0.4in;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cover-body {
+    padding: 0.35in 0.75in 0.5in;
+    flex: 1;
+  }
+
+  /* Section banners bleed to the padding edge of .page */
+  .section-banner {
+    margin: 8pt -0.75in 12pt;
+    padding: 10pt 0.75in 8pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Footer: static flow, appears after page content */
+  .page-footer {
+    position: static;
+    margin-top: 18pt;
+  }
+
+  /* Tighten vertical spacing for print — reclaims ~15% page height */
+  body { line-height: 1.45; }
+  .page-header { margin-bottom: 16pt; }
+  .section-desc { margin-bottom: 10pt; }
+  .step { padding: 5pt 0; }
+  .check-item { padding: 5pt 0; }
+  .card { padding: 9pt 12pt; margin-bottom: 8pt; }
+  .callout { padding: 7pt 10pt; margin: 7pt 0; }
+  .grid-2, .grid-3 { gap: 8pt; }
+  .cover-stats { margin-bottom: 18pt; }
+  .floor-maps-grid { gap: 6pt; margin-bottom: 0; }
+  td { padding: 4pt 8pt; }
+  th { padding: 4pt 8pt; }
+  .floor-map-label { padding: 3pt 8pt; }
+
+  /* Only prevent breaks inside atomic elements (flow diagrams, explicitly
+     flagged .no-break blocks). Cards/tables that exceed a page height
+     must be allowed to break — break-inside: avoid on an oversized element
+     causes the browser to bump it to the next page, leaving a blank gap,
+     and then break-before: page on the next .page div creates a blank sheet. */
+  .flow, .no-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Keep individual rows, steps, and list items together */
+  .step, tr, .check-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Keep headers attached to the content that follows */
+  .page-header, .section-banner, .card-title {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Color fidelity for tinted elements */
+  .cover-stat, .cover-stripe, .section-banner,
+  th, tr:nth-child(even) td,
+  .flow-step, .flow-new, .flow-progress, .flow-done, .flow-pending,
+  .callout-warn, .callout-danger, .callout-info, .callout-green,
+  .card, .code-box, .floor-map-label, .floor-map-wrap {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a { color: inherit; text-decoration: none; }
+}
+
+@page {
+  size: letter;
+  margin: 0;
+}
+
+
+
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     PAGE 1 — COVER
+════════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-stripe">
+    <div class="cover-eyebrow">Hyatt Place Newark / Main Street · 94 East Main Street Building 1000 · Newark, DE 19711</div>
+    <div class="cover-title">Hotel<br><em>Engineering</em><br>Manual</div>
+    <div class="cover-sub">Standard Operating Procedures &amp; Daily Reference Guide</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-stats">
+      <div class="cover-stat">
+        <span class="cover-stat-num">7</span>
+        <span class="cover-stat-label">Floors</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">3</span>
+        <span class="cover-stat-label">Breaker Panels</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">3</span>
+        <span class="cover-stat-label">Ice Machines</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">1</span>
+        <span class="cover-stat-label">Pool</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat-num">30<span style="font-size:16pt">min</span></span>
+        <span class="cover-stat-label">Min Per Room PM</span>
+      </div>
+    </div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item"><span class="cover-meta-label">Key System:</span><span class="cover-meta-value">Doormakabra (NFC)</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Pool Type:</span><span class="cover-meta-value">Bromine / Chlorine</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Blinds:</span><span class="cover-meta-value">Somfy Battery Motorized (RTS)</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Room Software:</span><span class="cover-meta-value">BOB (Room Status)</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Thermostat Control:</span><span class="cover-meta-value">Engineering Office Panel</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Laundry:</span><span class="cover-meta-value">2nd Floor</span></div>
+    </div>
+
+    <div class="cover-disclaimer" style="margin-top:20pt;">
+      <strong>⚠ For Internal Use Only.</strong> This document contains property-specific operational procedures. Supplement with the Doormakabra password card kept in the Engineering Office. Do not distribute outside hotel staff.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Rev. 1.0 · Internal Use Only</span>
+    <span>1</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 2 — TABLE OF CONTENTS
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>Table of Contents</span>
+  </div>
+
+  <div class="toc-title">Contents</div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">Reference</div>
+    <div class="toc-entry"><span class="toc-num">REF</span><span class="toc-label">Floor Maps &amp; Equipment Quick Reference</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">AM Checklist</div>
+    <div class="toc-entry"><span class="toc-num">01</span><span class="toc-label">Daily Responsibilities Overview</span><span class="toc-dots"></span><span class="toc-page">4</span></div>
+    <div class="toc-entry"><span class="toc-num">02</span><span class="toc-label">Boiler Room Inspection</span><span class="toc-dots"></span><span class="toc-page">5</span></div>
+    <div class="toc-entry"><span class="toc-num">03</span><span class="toc-label">Breaker Panels</span><span class="toc-dots"></span><span class="toc-page">4</span></div>
+    <div class="toc-entry"><span class="toc-num">04</span><span class="toc-label">Ice Machines</span><span class="toc-dots"></span><span class="toc-page">6</span></div>
+    <div class="toc-entry"><span class="toc-num">05</span><span class="toc-label">Hallways &amp; Laundry</span><span class="toc-dots"></span><span class="toc-page">6</span></div>
+    <div class="toc-entry"><span class="toc-num">06</span><span class="toc-label">Kitchen &amp; Bar</span><span class="toc-dots"></span><span class="toc-page">6</span></div>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">Procedures</div>
+    <div class="toc-entry"><span class="toc-num">07</span><span class="toc-label">Pool Testing &amp; Chemical Treatment</span><span class="toc-dots"></span><span class="toc-page">7</span></div>
+    <div class="toc-entry"><span class="toc-num">08</span><span class="toc-label">Room PM Inspection</span><span class="toc-dots"></span><span class="toc-page">8</span></div>
+    <div class="toc-entry"><span class="toc-num">09</span><span class="toc-label">Thermostats</span><span class="toc-dots"></span><span class="toc-page">10</span></div>
+    <div class="toc-entry"><span class="toc-num">10</span><span class="toc-label">Somfy Motorized Blinds</span><span class="toc-dots"></span><span class="toc-page">11</span></div>
+    <div class="toc-entry"><span class="toc-num">11</span><span class="toc-label">Doormakabra Key Card System</span><span class="toc-dots"></span><span class="toc-page">13</span></div>
+    <div class="toc-entry"><span class="toc-num">12</span><span class="toc-label">Work Orders</span><span class="toc-dots"></span><span class="toc-page">15</span></div>
+  </div>
+
+  <div style="margin-top:30pt;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:14pt;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink);margin-bottom:10pt;padding-bottom:6pt;border-bottom:1pt solid var(--rule);">Daily Shift Sequence</div>
+    <div style="display:flex;gap:0;border:1pt solid var(--rule);border-radius:4pt;overflow:hidden;">
+      <div style="flex:1;padding:12pt;border-right:1pt solid var(--rule);background:#f8f9fa;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);margin-bottom:6pt;">Step 1 — AM</div>
+        <div style="font-weight:600;font-size:10pt;color:var(--ink);">Engineering Checklist</div>
+        <div style="font-size:8.5pt;color:var(--ink-light);margin-top:3pt;">Boiler → Breakers → Ice → Hallways → Laundry → Kitchen</div>
+      </div>
+      <div style="flex:1;padding:12pt;border-right:1pt solid var(--rule);background:#f8f9fa;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);margin-bottom:6pt;">Step 2 — AM</div>
+        <div style="font-weight:600;font-size:10pt;color:var(--ink);">Pool Test</div>
+        <div style="font-size:8.5pt;color:var(--ink-light);margin-top:3pt;">Chlorine, bromine, pH. Record results in pool checklist.</div>
+      </div>
+      <div style="flex:1;padding:12pt;border-right:1pt solid var(--rule);background:#f8f9fa;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);margin-bottom:6pt;">Step 3 — All Day</div>
+        <div style="font-weight:600;font-size:10pt;color:var(--ink);">Room PM Inspections</div>
+        <div style="font-size:8.5pt;color:var(--ink-light);margin-top:3pt;">BOB → Engineering Inspection. Min 30 min/room.</div>
+      </div>
+      <div style="flex:1;padding:12pt;background:#f8f9fa;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);margin-bottom:6pt;">Ongoing</div>
+        <div style="font-weight:600;font-size:10pt;color:var(--ink);">Work Orders</div>
+        <div style="font-size:8.5pt;color:var(--ink-light);margin-top:3pt;">Log everything. In Progress → Completed with comments.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Table of Contents</span>
+    <span>2</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 3 — FLOOR MAPS
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>REF — Floor Maps &amp; Equipment Reference</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">REF-01</span>
+    <span class="section-title">Floor Maps &amp; Equipment Reference</span>
+  </div>
+
+  <div class="floor-maps-grid">
+
+    <!-- LOBBY -->
+    <div class="floor-map-wrap">
+      <div class="floor-map-label">Lobby — Ground Floor <span>Main Breakers · Office</span></div>
+      <svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="380" height="120" fill="#f7f9fb"/>
+        <!-- Breakers -->
+        <rect x="12" y="12" width="108" height="96" rx="3" fill="#fdf3dc" stroke="#c47f00" stroke-width="1.5"/>
+        <text x="66" y="54" fill="#c47f00" font-family="'Barlow Condensed',sans-serif" font-size="10" font-weight="700" text-anchor="middle">MAIN BREAKERS</text>
+        <text x="66" y="68" fill="#7a4800" font-family="'IBM Plex Mono',monospace" font-size="5.5" text-anchor="middle">Master disconnect</text>
+        <text x="66" y="80" fill="#7a4800" font-family="'IBM Plex Mono',monospace" font-size="5.5" text-anchor="middle">⚡ Lobby Panel</text>
+        <!-- Pool -->
+        <rect x="132" y="12" width="100" height="96" rx="3" fill="#edf7f5" stroke="#166451" stroke-width="1.5"/>
+        <text x="182" y="54" fill="#166451" font-family="'Barlow Condensed',sans-serif" font-size="10" font-weight="700" text-anchor="middle">POOL</text>
+        <text x="182" y="68" fill="#166451" font-family="'IBM Plex Mono',monospace" font-size="5" text-anchor="middle">Ceiling reader</text>
+        <text x="182" y="80" fill="#166451" font-family="'IBM Plex Mono',monospace" font-size="5" text-anchor="middle">Gym · Front Door</text>
+        <!-- Eng Office -->
+        <rect x="244" y="12" width="124" height="96" rx="3" fill="#edf2f8" stroke="#2a4a72" stroke-width="1.5"/>
+        <text x="306" y="48" fill="#2a4a72" font-family="'Barlow Condensed',sans-serif" font-size="10" font-weight="700" text-anchor="middle">ENG. OFFICE</text>
+        <text x="306" y="62" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="5" text-anchor="middle">Pool kit · Chargers</text>
+        <text x="306" y="74" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="5" text-anchor="middle">Thermostat panel</text>
+        <text x="306" y="86" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="5" text-anchor="middle">Doormakabra PC</text>
+      </svg>
+    </div>
+
+    <!-- FLOOR 2 -->
+    <div class="floor-map-wrap">
+      <div class="floor-map-label">2nd Floor <span>Panels F1–F2 · Storage · Laundry</span></div>
+      <svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="380" height="120" fill="#f7f9fb"/>
+        <!-- Breaker -->
+        <rect x="12" y="12" width="108" height="96" rx="3" fill="#fdf3dc" stroke="#c47f00" stroke-width="1.5"/>
+        <text x="66" y="54" fill="#c47f00" font-family="'Barlow Condensed',sans-serif" font-size="10" font-weight="700" text-anchor="middle">BREAKER PANEL</text>
+        <text x="66" y="68" fill="#7a4800" font-family="'IBM Plex Mono',monospace" font-size="5.5" text-anchor="middle">Floors 1 &amp; 2</text>
+        <!-- Storage -->
+        <rect x="132" y="12" width="108" height="96" rx="3" fill="#edf2f8" stroke="#2a4a72" stroke-width="1.5"/>
+        <text x="186" y="54" fill="#2a4a72" font-family="'Barlow Condensed',sans-serif" font-size="10" font-weight="700" text-anchor="middle">ENG. STORAGE</text>
+        <text x="186" y="68" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="5.5" text-anchor="middle">Supplies &amp; Parts</text>
+        <!-- Laundry -->
+        <rect x="252" y="12" width="116" height="96" rx="3" fill="#edf7f5" stroke="#166451" stroke-width="1.5"/>
+        <text x="310" y="54" fill="#166451" font-family="'Barlow Condensed',sans-serif" font-size="10" font-weight="700" text-anchor="middle">LAUNDRY</text>
+        <text x="310" y="68" fill="#166451" font-family="'IBM Plex Mono',monospace" font-size="5.5" text-anchor="middle">Check all washers daily</text>
+      </svg>
+    </div>
+
+    <!-- FLOOR 3 -->
+    <div class="floor-map-wrap">
+      <div class="floor-map-label">3rd Floor <span>Ice Machine</span></div>
+      <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="380" height="100" fill="#f7f9fb"/>
+        <rect x="12" y="12" width="356" height="76" rx="3" fill="#edf2f8" stroke="#2a4a72" stroke-width="1.5"/>
+        <text x="190" y="48" fill="#2a4a72" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="700" text-anchor="middle">🧊 ICE MACHINE</text>
+        <text x="190" y="65" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="6" text-anchor="middle">Check water &amp; ice dispense daily</text>
+      </svg>
+    </div>
+
+    <!-- FLOOR 4 -->
+    <div class="floor-map-wrap">
+      <div class="floor-map-label">4th Floor <span>Breaker Panel F4–F5</span></div>
+      <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="380" height="100" fill="#f7f9fb"/>
+        <rect x="12" y="12" width="356" height="76" rx="3" fill="#fdf3dc" stroke="#c47f00" stroke-width="1.5"/>
+        <text x="190" y="48" fill="#c47f00" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="700" text-anchor="middle">BREAKER PANEL</text>
+        <text x="190" y="65" fill="#7a4800" font-family="'IBM Plex Mono',monospace" font-size="6" text-anchor="middle">Serves Floors 4 &amp; 5 · Run finger across each breaker row</text>
+      </svg>
+    </div>
+
+    <!-- FLOOR 5 -->
+    <div class="floor-map-wrap">
+      <div class="floor-map-label">5th Floor <span>Ice Machine</span></div>
+      <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="380" height="100" fill="#f7f9fb"/>
+        <rect x="12" y="12" width="356" height="76" rx="3" fill="#edf2f8" stroke="#2a4a72" stroke-width="1.5"/>
+        <text x="190" y="48" fill="#2a4a72" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="700" text-anchor="middle">🧊 ICE MACHINE</text>
+        <text x="190" y="65" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="6" text-anchor="middle">Check water &amp; ice dispense daily</text>
+      </svg>
+    </div>
+
+    <!-- FLOOR 6 -->
+    <div class="floor-map-wrap">
+      <div class="floor-map-label">6th Floor <span>Breaker Panel F6–F7</span></div>
+      <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="380" height="100" fill="#f7f9fb"/>
+        <rect x="12" y="12" width="356" height="76" rx="3" fill="#fdf3dc" stroke="#c47f00" stroke-width="1.5"/>
+        <text x="190" y="48" fill="#c47f00" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="700" text-anchor="middle">BREAKER PANEL</text>
+        <text x="190" y="65" fill="#7a4800" font-family="'IBM Plex Mono',monospace" font-size="6" text-anchor="middle">Serves Floors 6 &amp; 7 · Run finger across each breaker row</text>
+      </svg>
+    </div>
+
+    <!-- FLOOR 7 -->
+    <div class="floor-map-wrap" style="grid-column:1/-1;">
+      <div class="floor-map-label">7th Floor / Roof <span>Ice Machine · Roof Access</span></div>
+      <svg viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <rect width="760" height="100" fill="#f7f9fb"/>
+        <!-- Ice machine -->
+        <rect x="12" y="12" width="480" height="76" rx="3" fill="#edf2f8" stroke="#2a4a72" stroke-width="1.5"/>
+        <text x="252" y="48" fill="#2a4a72" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="700" text-anchor="middle">🧊 ICE MACHINE</text>
+        <text x="252" y="65" fill="#556677" font-family="'IBM Plex Mono',monospace" font-size="6" text-anchor="middle">Check water &amp; ice dispense daily</text>
+        <!-- Roof access -->
+        <rect x="504" y="12" width="244" height="76" rx="3" fill="#fdf0f1" stroke="#b91c2a" stroke-width="1.5"/>
+        <text x="626" y="48" fill="#b91c2a" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="700" text-anchor="middle">ROOF ACCESS</text>
+        <text x="626" y="65" fill="#b91c2a" font-family="'IBM Plex Mono',monospace" font-size="6" text-anchor="middle">⚠ Restricted · Stairwell on this floor</text>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- Quick reference table -->
+  <table style="margin-top:6pt;">
+    <thead>
+      <tr><th>Floor</th><th>Critical Equipment</th><th>Coverage</th><th>AM Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="td-label">Lobby</td><td>Main Breaker Panel · Engineering Office</td><td>—</td><td>Verify master breakers on; retrieve pool test kit</td></tr>
+      <tr><td class="td-label">2nd</td><td>Breaker Panel · Eng. Storage Closet · Laundry</td><td>Floors 1–2</td><td>Check breakers; verify all washers operational</td></tr>
+      <tr><td class="td-label">3rd</td><td>Ice Machine</td><td>—</td><td>Test water &amp; ice dispense</td></tr>
+      <tr><td class="td-label">4th</td><td>Breaker Panel</td><td>Floors 4–5</td><td>Run finger along every breaker row</td></tr>
+      <tr><td class="td-label">5th</td><td>Ice Machine</td><td>—</td><td>Test water &amp; ice dispense</td></tr>
+      <tr><td class="td-label">6th</td><td>Breaker Panel</td><td>Floors 6–7</td><td>Run finger along every breaker row</td></tr>
+      <tr><td class="td-label">7th</td><td>Ice Machine · Roof Access</td><td>—</td><td>Test water &amp; ice dispense; roof as needed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>REF-01 — Floor Maps</span>
+    <span>3</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 4 — DAILY RESPONSIBILITIES
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>01 — Daily Responsibilities</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">01</span>
+    <span class="section-title">Daily Responsibilities</span>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="bar"></span> AM Shift <span class="tag tag-am">Morning</span></div>
+      <ul class="checklist">
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Engineering Checklist</strong><span>Boiler → Breakers → Ice Machines → Hallways → Laundry → Kitchen</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Pool Test</strong><span>Chlorine, bromine, and pH. Record results in the pool checklist.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Doormakabra Daily Config</strong><span>Connect device via USB, push all configs, verify locks.</span></div></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="bar"></span> All Day <span class="tag tag-daily">Ongoing</span></div>
+      <ul class="checklist">
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Room PM Inspections</strong><span>BOB → Room Status → Engineering Inspection. Min. 30 min/room.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Work Orders</strong><span>Log all tasks. Update status as work progresses.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Room Calls</strong><span>Respond promptly. Fix or escalate thermostat, lock, maintenance.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Thermostat Remote Control</strong><span>Use office panel. Operation: ON. Mode: HEAT or COOL.</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div style="margin-top:16pt;padding-top:12pt;border-top:1.5pt solid var(--ink);">
+    <div style="display:flex;align-items:baseline;gap:10pt;margin-bottom:8pt;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;color:var(--amber);letter-spacing:0.15em;">03</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:18pt;font-weight:900;text-transform:uppercase;color:var(--ink);">Breaker Panels</span>
+    </div>
+  </div>
+
+  <p class="section-desc">Three panels serve the property. Check every morning — Floors 2, 4, and 6.</p>
+
+  <div class="grid-3" style="margin-bottom:10pt;">
+    <div style="border:1pt solid var(--rule);border-radius:3pt;padding:10pt;background:var(--amber-bg);border-left:3pt solid var(--amber);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:4pt;">Panel 1</div>
+      <div style="font-weight:600;font-size:11pt;">2nd Floor</div>
+      <div style="font-size:8.5pt;color:var(--ink-light);">Serves Floors 1 &amp; 2</div>
+    </div>
+    <div style="border:1pt solid var(--rule);border-radius:3pt;padding:10pt;background:var(--amber-bg);border-left:3pt solid var(--amber);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:4pt;">Panel 2</div>
+      <div style="font-weight:600;font-size:11pt;">4th Floor</div>
+      <div style="font-size:8.5pt;color:var(--ink-light);">Serves Floors 4 &amp; 5</div>
+    </div>
+    <div style="border:1pt solid var(--rule);border-radius:3pt;padding:10pt;background:var(--amber-bg);border-left:3pt solid var(--amber);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:4pt;">Panel 3</div>
+      <div style="font-weight:600;font-size:11pt;">6th Floor</div>
+      <div style="font-size:8.5pt;color:var(--ink-light);">Serves Floors 6 &amp; 7</div>
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <span class="callout-icon">⚡</span>
+    <span><strong>Silent Trips:</strong> A tripped breaker sits in a middle position and is easy to miss by eye. Always run your finger physically along every row. A missed trip can leave a guest room without power, heat, or HVAC overnight. If a breaker trips again immediately after reset, do not force it — create a work order and investigate the circuit load.</span>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Sections 01 &amp; 03 — Daily Responsibilities · Breaker Panels</span>
+    <span>4</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 5 — BOILER ROOM / BREAKER PANELS
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>02 — Boiler Room</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">02</span>
+    <span class="section-title">Boiler Room</span>
+  </div>
+
+  <p class="section-desc">Check every AM. Hot water re-cycle line must stay above 100°F. The sensor box is above your head on the <strong>left side of the first boiler, past the E-Stop buttons.</strong></p>
+
+  <div class="callout callout-danger" style="margin-bottom:10pt;">
+    <span class="callout-icon">🔴</span>
+    <span>The <strong>E-Stop buttons</strong> are near the boiler entrance. Never activate them unless there is an emergency.</span>
+  </div>
+
+  <div class="card no-break">
+    <div class="card-title"><span class="bar"></span> Hot Water Re-Cycle Line Procedure</div>
+    <ol class="steps">
+      <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Enter boiler room. Walk past the E-Stop buttons — first boiler is on your left.</div></div></li>
+      <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Read the digital temperature sensor box</div><div class="step-detail">Located above your head on the left side of the first boiler. Cross-reference with the analog thermometer on the pipe itself.</div></div></li>
+      <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">If temp reads below 100°F — flip the reset switch</div><div class="step-detail">Find the switch far up the wall above the digital readout. Flip it <strong>OFF</strong>, then back <strong>ON</strong>. Allow a few minutes to recover. If temp doesn't recover within 15 minutes, create a work order and escalate.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 02 — Boiler Room</span>
+    <span>5</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 6 — ICE / HALLWAYS / KITCHEN
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>04–06 — Ice · Hallways · Kitchen</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">04</span>
+    <span class="section-title">Ice Machines — Floors 3, 5, 7</span>
+  </div>
+
+  <div class="card no-break" style="margin-bottom:14pt;">
+    <div class="card-title"><span class="bar"></span> Daily Check</div>
+    <ol class="steps">
+      <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Test water dispensing</div><div class="step-detail">Press the water button and confirm free flow. Weak pressure may indicate a supply line or filter issue.</div></div></li>
+      <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Test ice dispensing</div><div class="step-detail">Verify ice drops into the cup. Listen for unusual noises. If bin shows empty but machine is running, check the bin sensor or ice grid.</div></div></li>
+      <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Log any issues as a work order immediately</div><div class="step-detail">Notify the front desk if a machine is down so guests can be directed to a working unit.</div></div></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 05 + 06 -->
+  <div class="grid-2">
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;margin-bottom:8pt;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;color:var(--amber);letter-spacing:0.15em;">05</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:16pt;font-weight:900;text-transform:uppercase;color:var(--ink);">Hallways &amp; Laundry</span>
+      </div>
+      <ul class="checklist">
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Hallway Cleanliness</strong><span>No debris, stains, or guest items in halls</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>All lights working</strong><span>Fixtures, sconces, exit signs. Replace or log immediately.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Fire doors latching</strong><span>All fire doors must close and latch fully</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Laundry (2nd Floor)</strong><span>Run test cycle or verify each washer powers on and advances. Check hoses for leaks. Clear dryer lint traps.</span></div></li>
+      </ul>
+    </div>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:8pt;margin-bottom:8pt;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;color:var(--amber);letter-spacing:0.15em;">06</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:16pt;font-weight:900;text-transform:uppercase;color:var(--ink);">Kitchen &amp; Bar</span>
+      </div>
+      <ul class="checklist">
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Refrigeration units</strong><span>Confirm temp displays are reading correctly. Alert F&amp;B if warm.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Cooking equipment</strong><span>Test burners, ovens, warmers for ignition and operation.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Dishwasher / sinks</strong><span>Verify water pressure and drainage at commercial sinks.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Bar equipment</strong><span>Ice bin, refrigerators, draft lines, speed rails.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Exhaust hoods</strong><span>Confirm kitchen exhaust fans running when equipment is in use.</span></div></li>
+        <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>General appearance</strong><span>Space must look clean and ready for service.</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Sections 04–06</span>
+    <span>6</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 7 — POOL TESTING
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>07 — Pool Testing &amp; Chemical Treatment</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">07</span>
+    <span class="section-title">Pool Testing</span>
+  </div>
+
+  <p class="section-desc">Use the blue Taylor test kit stored next to the chlorine in the Engineering Office. Record all results in the pool checklist.</p>
+
+  <div class="grid-2">
+    <div class="card no-break">
+      <div class="card-title"><span class="bar"></span> Target Chemical Levels</div>
+      <table>
+        <thead><tr><th>Parameter</th><th>Target Range</th><th>If Out of Range</th></tr></thead>
+        <tbody>
+          <tr><td class="td-label">Free Chlorine</td><td class="td-good">1.0 – 3.0 ppm</td><td style="font-size:8.5pt;">Below: add bag of shock</td></tr>
+          <tr><td class="td-label">Total Bromine</td><td class="td-good">3.0 – 5.0 ppm</td><td style="font-size:8.5pt;">Below: add bromine</td></tr>
+          <tr><td class="td-label">pH</td><td class="td-good">7.4 – 7.6</td><td style="font-size:8.5pt;">Low: soda ash · High: muriatic acid</td></tr>
+          <tr><td class="td-label">Total Alkalinity</td><td class="td-good">80 – 120 ppm</td><td style="font-size:8.5pt;">Adjust before correcting pH</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-warn" style="margin-top:10pt;">
+        <span class="callout-icon">⚠️</span>
+        <span>A level above 10 ppm can bleach out the test sample, giving a false zero. If this occurs, dilute 1:1 with tap water and multiply the result by 2.</span>
+      </div>
+    </div>
+
+    <div class="card no-break">
+      <div class="card-title"><span class="bar"></span> Taylor Test Kit — Procedure</div>
+      <ol class="steps">
+        <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Collect sample 18" below the surface</div><div class="step-detail">Hold vial upside-down, then flip right-side up to fill. Avoids surface contamination.</div></div></li>
+        <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Free Chlorine: add R-0001 + R-0002</div><div class="step-detail">Cap and mix. Match resulting pink color to comparator block. Read ppm.</div></div></li>
+        <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Bromine: same DPD reagents</div><div class="step-detail">Use the bromine scale on comparator, OR multiply chlorine reading × 2.25.</div></div></li>
+        <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">pH: add R-0014 Phenol Red (5 drops)</div><div class="step-detail">Fresh sample. Cap, invert, mix. Match yellow-to-red color to pH scale. Target: 7.4–7.6.</div></div></li>
+        <li class="step"><div class="step-num">05</div><div class="step-content"><div class="step-action">Record date, time, name, and all readings</div></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout callout-green" style="margin-top:10pt;">
+    <span class="callout-icon">🧪</span>
+    <span><strong>Zero Chlorine — Shock Treatment:</strong> Add one bag of shock. Pour it as a strip along the <strong>right side</strong> of the pool near the bottom drains. Keep the bag close to the water surface to minimize airborne powder. Do not breathe dust.</span>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 07 — Pool Testing</span>
+    <span>7</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 7 — ROOM PM (Part 1)
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>08 — Room PM Inspection</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">08</span>
+    <span class="section-title">Room PM Inspection</span>
+  </div>
+
+  <p class="section-desc">Preventive maintenance keeps rooms guest-ready. Minimum 30 minutes per room. Always start the inspection in BOB before entering.</p>
+
+  <div class="callout callout-danger" style="margin-bottom:12pt;">
+    <span class="callout-icon">🔴</span>
+    <span><strong>CRITICAL — Start Before Entering:</strong> BOB → Room Status → [Room Number] → Engineering Inspection → <strong>START THE INSPECTION.</strong> If you forget to start before entering, the work is not documented.</span>
+  </div>
+
+  <div class="card no-break" style="margin-bottom:10pt;">
+    <div class="card-title"><span class="bar"></span> Before You Enter — Setup</div>
+    <ul class="checklist">
+      <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Start inspection in BOB</strong><span>BOB → Room Status → [Room #] → Engineering Inspection → START</span></div></li>
+      <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Grab a new HVAC filter</strong><span>Write today's date and the room number on the filter before entering</span></div></li>
+      <li class="check-item"><div class="check-box"></div><div class="check-label"><strong>Grab the PM bag</strong><span>Contains drill, bit, screws, paint marker, and channel-lock pliers</span></div></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="bar"></span> Full Room PM Checklist — Steps 1–3</div>
+    <ol class="steps">
+      <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Test the TV</div><div class="step-detail">Power on. Verify all HDMI inputs and basic channels are accessible.</div></div></li>
+      <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Test toilet flush &amp; inspect tank</div><div class="step-detail">Flush and confirm full bowl clearance. Open the tank — float should stop water ~1 inch below the overflow tube. Too high = running toilet; too low = weak flush.</div></div></li>
+      <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Test all lights</div><div class="step-detail">Cycle every switch: bedside lamps, overhead, bathroom vanity, mirror, closet. Replace burned-out bulbs immediately.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 08 — Room PM</span>
+    <span>8</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 9 — ROOM PM (cont.)
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>08 — Room PM Inspection (cont.)</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="bar"></span> Full Room PM Checklist — Steps 4–13</div>
+    <ol class="steps">
+      <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Replace HVAC filter &amp; clean grate</div><div class="step-detail">Remove old filter. Vacuum or wipe the grate. Insert the pre-labeled new filter.</div></div></li>
+      <li class="step"><div class="step-num">05</div><div class="step-content"><div class="step-action">Inspect and repair side table if bent</div><div class="step-detail">Test for wobble. If bent: <strong>(1)</strong> Place plastic bag underneath to catch chips. <strong>(2)</strong> Optionally unscrew metal bracket and manually un-bend first. <strong>(3)</strong> Drill a hole at the rear of the metal piece behind the pole. <strong>(4)</strong> Drive a screw through to reinforce the joint.</div></div></li>
+      <li class="step"><div class="step-num">06</div><div class="step-content"><div class="step-action">Inspect walls and furniture for scratches/dents</div><div class="step-detail">Use the <strong>black paint marker</strong> on scratched black furniture. Note significant wall damage in work order comments.</div></div></li>
+      <li class="step"><div class="step-num">07</div><div class="step-content"><div class="step-action">Check shower handle tightness</div><div class="step-detail">Grip each handle and test for looseness. Tighten with channel-lock pliers. Wrap jaws in cloth to avoid scratching chrome/brushed nickel.</div></div></li>
+      <li class="step"><div class="step-num">08</div><div class="step-content"><div class="step-action">Pull and clean sink drain plug</div><div class="step-detail">Lift or unscrew the pop-up stopper. Remove hair and debris. Reinstall and run water to confirm drain rate.</div></div></li>
+      <li class="step"><div class="step-num">09</div><div class="step-content"><div class="step-action">If room has a tub — clean tub drain</div><div class="step-detail">Unscrew the tub drain plug. Clean the strainer. Run water to confirm proper drainage.</div></div></li>
+      <li class="step"><div class="step-num">10</div><div class="step-content"><div class="step-action">Test water pressure at all fixtures</div><div class="step-detail">Check sink, shower, and tub (if present). Low pressure at a single fixture may be a clogged aerator. Low pressure everywhere indicates a supply issue — create a work order.</div></div></li>
+      <li class="step"><div class="step-num">11</div><div class="step-content"><div class="step-action">Test the in-room safe</div><div class="step-detail"><strong>(1)</strong> Press LOCK — observe battery indicator LEDs. <strong>(2)</strong> Enter any test passcode → LOCK → safe locks. <strong>(3)</strong> Enter same passcode → LOCK → safe unlocks. Replace 9V or 4×AA batteries if battery is low.</div></div></li>
+      <li class="step"><div class="step-num">12</div><div class="step-content"><div class="step-action">Set thermostat &amp; test HVAC</div><div class="step-detail">Set to standby temp (68–72°F). Verify unit turns on and blows conditioned air without unusual noise.</div></div></li>
+      <li class="step"><div class="step-num">13</div><div class="step-content"><div class="step-action">Spray TileX in the shower</div><div class="step-detail">Apply a light, even spray to shower walls and grout. Do not oversaturate. Prevents mold and soap scum buildup.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 08 — Room PM (cont.)</span>
+    <span>9</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 7 — THERMOSTATS
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>09 — Thermostats</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">09</span>
+    <span class="section-title">Thermostats</span>
+  </div>
+
+  <p class="section-desc">Most thermostat complaints are simple fixes. The Engineering Office panel lets you control all room thermostats remotely without entering the room.</p>
+
+  <div class="callout callout-info" style="margin-bottom:10pt;">
+    <span class="callout-icon">💡</span>
+    <span>The vast majority of thermostat calls are because the unit is <strong>OFF</strong> or set to <strong>"Auto"</strong> mode. Always check these two settings first before dispatching to the room.</span>
+  </div>
+
+  <div class="card no-break">
+    <div class="card-title"><span class="bar"></span> Remote Control via Engineering Office Panel</div>
+    <ol class="steps">
+      <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Open thermostat control panel in the Engineering Office</div></div></li>
+      <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Select the room number</div></div></li>
+      <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Set Operation to ON</div><div class="step-detail">If the unit is OFF it will not run regardless of any other setting. This is the most common fix.</div></div></li>
+      <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Set the correct temperature</div><div class="step-detail">Guest's requested temp or a comfortable default (68–74°F).</div></div></li>
+      <li class="step"><div class="step-num">05</div><div class="step-content"><div class="step-action">Set mode to HEAT or COOL</div><div class="step-detail">Match to the season and guest's need. "Auto" mode often causes complaints — always set explicitly.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 09 — Thermostats</span>
+    <span>10</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 8 — SOMFY MOTORIZED BLINDS
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>10 — Somfy Motorized Blinds</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">10</span>
+    <span class="section-title">Somfy Motorized Blinds</span>
+  </div>
+
+  <p class="section-desc">Battery-powered Somfy RTS motorized blinds. Chargers are on the power strip in the Engineering Office. Always seat the connector properly before charging.</p>
+
+  <div class="grid-2">
+    <div class="card no-break">
+      <div class="card-title"><span class="bar"></span> Charging a Blind Battery</div>
+      <ol class="steps">
+        <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Locate the charging pigtail at the motor end cap</div><div class="step-detail">It will be tucked into a bracket. Pull it out gently.</div></div></li>
+        <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Connect the white charger from the office</div><div class="step-detail">Join the charger to the motor pigtail. Ensure the connector seats properly. Do not force.</div></div></li>
+        <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Plug into an outlet</div><div class="step-detail">LED shows <strong>red</strong> during charging. Transitions red → orange → <strong>green</strong> when fully charged (~4–5 hours). Blind remains operational while charging.</div></div></li>
+        <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Disconnect and tuck the pigtail back into the bracket</div><div class="step-detail">Ensure no cords interfere with blind movement before testing.</div></div></li>
+      </ol>
+    </div>
+
+    <div class="card no-break">
+      <div class="card-title"><span class="bar"></span> Pairing a Blind to the Remote</div>
+      <ol class="steps">
+        <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Wake the motor</div><div class="step-detail">Press the pinhole or motor button on the end cap. Blind jogs up/down to confirm it's awake.</div></div></li>
+        <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Select the channel (multi-channel remotes only)</div><div class="step-detail">Single-channel remotes: skip this step.</div></div></li>
+        <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Press UP + DOWN simultaneously for 2 seconds</div><div class="step-detail">Blind jogs up/down to confirm it has been assigned. Pairing is complete.</div></div></li>
+        <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Test full travel in both directions</div><div class="step-detail">If blind moves the wrong direction, hold MY button until it jogs to reverse.</div></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 10 — Somfy Blinds</span>
+    <span>11</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 12 — SOMFY BLINDS (cont.)
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>10 — Somfy Motorized Blinds (cont.)</span>
+  </div>
+
+  <div class="card no-break">
+    <div class="card-title"><span class="bar"></span> Setting Travel Limits</div>
+    <div class="callout callout-danger" style="margin-bottom:8pt;">
+      <span class="callout-icon">🔴</span>
+      <span>If you begin setting limits, you <strong>must complete the full process.</strong> Partial limit programming can damage the motor.</span>
+    </div>
+    <ol class="steps">
+      <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Enter limit-setting mode: Hold PROG button until blind jogs</div><div class="step-detail">Green LED indicates upper limit is ready to be set.</div></div></li>
+      <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Set upper (open) limit</div><div class="step-detail">Use UP to move to fully open. Press and hold MY until blind jogs — upper limit saved.</div></div></li>
+      <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Set lower (closed) limit</div><div class="step-detail">Press DOWN to move to fully closed. LED blinks slowly. Press and hold MY until blind jogs.</div></div></li>
+      <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Confirm: Press and hold MY until blind jogs up and down</div><div class="step-detail">Both limits are now recorded. Test full travel in both directions.</div></div></li>
+    </ol>
+    <div class="callout callout-warn" style="margin-top:8pt;">
+      <span class="callout-icon">⚠️</span>
+      <span><strong>Factory Reset (last resort):</strong> Hold PROG ~12 seconds until blind jogs twice. This erases all limits and pairings — you must re-pair and re-set limits from scratch.</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 10 — Somfy Blinds (cont.)</span>
+    <span>12</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 9 — DOORMAKABRA KEY CARD SYSTEM
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>11 — Doormakabra Key Card System</span>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section-banner">
+    <span class="section-code">11</span>
+    <span class="section-title">Doormakabra Key Card System</span>
+  </div>
+
+  <p class="section-desc">NFC-based electronic lock system. The handheld programmer must receive updated configs from the office computer every single day before programming any doors.</p>
+
+  <div class="callout callout-danger" style="margin-bottom:10pt;">
+    <span class="callout-icon">🔑</span>
+    <span><strong>Daily Requirement:</strong> The Doormakabra device config <strong>must be updated every morning.</strong> Skipping this means the device cannot accurately program doors for the current day.</span>
+  </div>
+
+  <!-- PASSWORD CARD -->
+  <div class="card no-break" style="margin-bottom:14pt; border:1.5pt dashed #b91c2a; background:#fdf0f1;">
+    <div class="card-title" style="color:#b91c2a; border-bottom-color:#f5c0c4;">
+      <span class="bar" style="background:#b91c2a;"></span>
+      Credential Reference Card
+      <span style="margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:7pt; font-weight:400; color:#b91c2a; text-transform:none; letter-spacing:0;">⚠ Keep secure — do not leave unattended</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16pt;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.12em; color:#b91c2a; margin-bottom:10pt;">Doormakabra Handheld Device</div>
+        <div style="margin-bottom:10pt;">
+          <div style="font-size:8.5pt; font-weight:600; color:var(--ink); margin-bottom:3pt;">Username</div>
+          <div style="border-bottom:1pt solid var(--ink); height:18pt; background:white;"></div>
+        </div>
+        <div>
+          <div style="font-size:8.5pt; font-weight:600; color:var(--ink); margin-bottom:3pt;">Password</div>
+          <div style="border-bottom:1pt solid var(--ink); height:18pt; background:white;"></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.12em; color:#b91c2a; margin-bottom:10pt;">Office Computer (Doormakabra PC)</div>
+        <div style="margin-bottom:10pt;">
+          <div style="font-size:8.5pt; font-weight:600; color:var(--ink); margin-bottom:3pt;">Username</div>
+          <div style="border-bottom:1pt solid var(--ink); height:18pt; background:white;"></div>
+        </div>
+        <div>
+          <div style="font-size:8.5pt; font-weight:600; color:var(--ink); margin-bottom:3pt;">Password</div>
+          <div style="border-bottom:1pt solid var(--ink); height:18pt; background:white;"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12pt; padding-top:10pt; border-top:0.5pt solid #f5c0c4;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.12em; color:#b91c2a; margin-bottom:8pt;">Doormakabra App Login (if separate)</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16pt;">
+        <div>
+          <div style="font-size:8.5pt; font-weight:600; color:var(--ink); margin-bottom:3pt;">Username / Email</div>
+          <div style="border-bottom:1pt solid var(--ink); height:18pt; background:white;"></div>
+        </div>
+        <div>
+          <div style="font-size:8.5pt; font-weight:600; color:var(--ink); margin-bottom:3pt;">Password</div>
+          <div style="border-bottom:1pt solid var(--ink); height:18pt; background:white;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 11 — Doormakabra</span>
+    <span>13</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 14 — DOORMAKABRA (cont.)
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>11 — Doormakabra Key Card System (cont.)</span>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:10pt;">
+    <div class="card no-break">
+      <div class="card-title"><span class="bar"></span> Daily Config Update — Every Morning</div>
+      <ol class="steps">
+        <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Log into the Doormakabra office computer</div><div class="step-detail">Credentials on the password card in the Engineering Office.</div></div></li>
+        <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Connect the handheld device via USB</div><div class="step-detail">Wait for the device to be recognized by the computer.</div></div></li>
+        <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Open the Doormakabra app</div></div></li>
+        <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Device Management → Select All Configs → Send to Device</div><div class="step-detail">This pushes the current day's access rights and door schedules to the handheld programmer.</div></div></li>
+      </ol>
+    </div>
+
+    <div class="card no-break">
+      <div class="card-title"><span class="bar"></span> Programming a Door Lock</div>
+      <ol class="steps">
+        <li class="step"><div class="step-num">01</div><div class="step-content"><div class="step-action">Complete daily config update first</div></div></li>
+        <li class="step"><div class="step-num">02</div><div class="step-content"><div class="step-action">Log into the Doormakabra handheld device</div><div class="step-detail">Use device credentials from the password card.</div></div></li>
+        <li class="step"><div class="step-num">03</div><div class="step-content"><div class="step-action">Bring the device to the door needing programming</div></div></li>
+        <li class="step"><div class="step-num">04</div><div class="step-content"><div class="step-action">Program Lock → Room Number → NFC</div><div class="step-detail"><strong>Click NEXT on the first menu</strong> before selecting NFC as the communication method.</div></div></li>
+        <li class="step"><div class="step-num">05</div><div class="step-content"><div class="step-action">Hold device close to the lock</div><div class="step-detail">NFC transfer completes automatically. Confirm success on the device screen.</div></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card no-break" style="margin-bottom:16pt;">
+    <div class="card-title"><span class="bar"></span> Ceiling-Mounted Readers — Special Locations</div>
+    <p style="font-size:9pt;color:var(--ink-mid);margin-bottom:8pt;">The following locations have their door controllers in the ceiling, not at the door frame. Open the ceiling panel to access and program them.</p>
+    <div class="pill-row">
+      <span class="pill">🏊 Pool</span>
+      <span class="pill">🏋️ Gym</span>
+      <span class="pill">🚪 Front Door</span>
+      <span class="pill">📍 Other Small Readers</span>
+    </div>
+    <div class="callout callout-warn" style="margin-top:10pt;">
+      <span class="callout-icon">⚠️</span>
+      <span><strong>Battery Replacement:</strong> Any lock that has its batteries replaced <strong>must be re-programmed</strong> with the Doormakabra device. The lock loses programming when power is interrupted.</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 11 — Doormakabra (cont.)</span>
+    <span>14</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     PAGE 10 — WORK ORDERS
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <strong>Engineering Training Manual</strong>
+    <span>12 — Work Orders</span>
+  </div>
+
+  <div class="section-banner">
+    <span class="section-code">12</span>
+    <span class="section-title">Work Orders</span>
+  </div>
+
+  <p class="section-desc">Create a work order for every task — including issues you've already fixed. A thorough log protects you, informs management, and documents property conditions.</p>
+
+  <div class="callout callout-info" style="margin-bottom:10pt;">
+    <span class="callout-icon">📝</span>
+    <span>Log <strong>everything.</strong> Even tasks resolved in the same visit need a completed work order so management has visibility into your workload and property conditions.</span>
+  </div>
+
+  <div class="flow no-break">
+    <div class="flow-step flow-new">
+      <span class="flow-label">New</span>
+      <div class="flow-desc">Issue identified</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step flow-progress">
+      <span class="flow-label">In Progress</span>
+      <div class="flow-desc">Work has started</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step flow-pending">
+      <span class="flow-label">Pending</span>
+      <div class="flow-desc">Awaiting parts or resources</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step flow-done">
+      <span class="flow-label">Completed</span>
+      <div class="flow-desc">Fully resolved + comments added</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:10pt;">
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:11pt;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:4pt;">✓ Good Comment</div>
+      <div class="code-box good">"Guest reported no hot water in Room 412. Found hot water re-cycle line at 88°F on boiler sensor. Performed reset switch procedure. Temp recovered to 118°F within 10 min. Confirmed hot water restored for guest. [Name]"</div>
+    </div>
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:11pt;font-weight:700;text-transform:uppercase;color:var(--red);margin-bottom:4pt;">✗ Poor Comment</div>
+      <div class="code-box bad">"Fixed."</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Engineering Department Training Manual</span>
+    <span>Section 12 — Work Orders</span>
+    <span>15</span>
+  </div>
+</div>
+
+</body>
+</html>

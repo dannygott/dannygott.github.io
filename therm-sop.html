@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LG Thermostat Controller — Standard Operating Procedure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:    oklch(50% 0.10 232);
+      --blue-lt: oklch(94% 0.04 232);
+      --blue-dk: oklch(38% 0.09 232);
+      --gold:    oklch(63% 0.13 82);
+      --gold-lt: oklch(95% 0.03 82);
+      --gold-dk: oklch(50% 0.12 82);
+      --bg:      oklch(97.5% 0.007 75);
+      --ink:     oklch(22% 0.025 232);
+      --ink-2:   oklch(42% 0.025 232);
+      --ink-3:   oklch(60% 0.018 232);
+      --rule:    oklch(87% 0.015 75);
+      --page-w:  72rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1vw + 0.6rem, 1.0625rem);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      background: var(--ink);
+      color: oklch(96% 0.006 75);
+      padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 8vw, 6rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .masthead::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 24px,
+        oklch(100% 0 0 / 0.018) 24px,
+        oklch(100% 0 0 / 0.018) 25px
+      );
+      pointer-events: none;
+    }
+
+    .masthead-inner {
+      max-width: var(--page-w);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .masthead-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .eyebrow-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .eyebrow-text {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .masthead h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      color: oklch(97% 0.006 75);
+    }
+
+    .masthead h1 em {
+      font-style: italic;
+      color: oklch(90% 0.025 82);
+    }
+
+    .masthead-sub {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: oklch(72% 0.015 232);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── TOC ── */
+    .toc-wrap {
+      background: var(--blue-lt);
+      border-top: 3px solid var(--gold);
+    }
+
+    .toc {
+      max-width: var(--page-w);
+      margin: 0 auto;
+      padding: 2rem clamp(1.5rem, 8vw, 6rem);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+      gap: 0.25rem 3rem;
+    }
+
+    .toc-heading {
+      grid-column: 1 / -1;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-dk);
+      margin-bottom: 0.75rem;
+    }
+
+    .toc a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      color: var(--blue-dk);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 0.2rem 0;
+      transition: color 0.15s;
+    }
+
+    .toc a:hover { color: var(--gold-dk); }
+
+    .toc-num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      min-width: 1.25rem;
+      color: var(--gold-dk);
+      font-size: 0.75rem;
+    }
+
+    /* ── Main content ── */
+    .content {
+      max-width: var(--page-w);
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 8vw, 6rem);
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: clamp(3.5rem, 6vw, 5rem);
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: none; }
+    }
+
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+    .section:nth-child(9)  { animation-delay: 0.45s; }
+    .section:nth-child(10) { animation-delay: 0.50s; }
+    .section:nth-child(11) { animation-delay: 0.55s; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .section-title-wrap {
+      flex: 1;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2vw + 0.5rem, 1.625rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    h3 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-dk);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .section-body {
+      padding-left: calc(clamp(2rem, 3vw, 2.75rem) + 1.25rem);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--ink-2);
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Lists ── */
+    ol, ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--ink-2);
+    }
+
+    ol { list-style: decimal; }
+    ul { list-style: none; padding-left: 0; }
+
+    ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.35rem;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 5px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    ol li { margin-bottom: 0.4rem; }
+
+    /* ── Tables ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border: 1px solid var(--rule);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    thead tr {
+      background: var(--ink);
+      color: oklch(96% 0.006 75);
+    }
+
+    thead th {
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.1s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--blue-lt); }
+
+    tbody td {
+      padding: 0.65rem 1rem;
+      color: var(--ink-2);
+      vertical-align: top;
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* ── Callouts ── */
+    .callout {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      background: var(--gold-lt);
+      border-left: 3px solid var(--gold);
+    }
+
+    .callout-icon {
+      flex-shrink: 0;
+      color: var(--gold-dk);
+      margin-top: 0.15em;
+      font-size: 0.95rem;
+    }
+
+    .callout p {
+      font-size: 0.875rem;
+      color: oklch(38% 0.04 82);
+      margin: 0;
+    }
+
+    .callout strong {
+      color: oklch(30% 0.05 82);
+    }
+
+    .callout-info {
+      background: var(--blue-lt);
+      border-left-color: var(--blue);
+    }
+
+    .callout-info p { color: var(--blue-dk); }
+    .callout-info .callout-icon { color: var(--blue); }
+
+    /* ── Status indicators ── */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.875rem;
+    }
+
+    .status-row:last-child { border-bottom: none; }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-green  { background: oklch(55% 0.14 145); }
+    .dot-red    { background: oklch(55% 0.18 25); }
+    .dot-yellow { background: oklch(72% 0.14 75); }
+
+    .status-label {
+      font-weight: 600;
+      color: var(--ink);
+      min-width: 10rem;
+    }
+
+    .status-desc { color: var(--ink-3); }
+
+    /* ── Code / key values ── */
+    code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8em;
+      background: oklch(90% 0.02 232);
+      color: var(--blue-dk);
+      padding: 0.1em 0.35em;
+    }
+
+    /* ── Divider ── */
+    .gold-rule {
+      display: block;
+      width: 3rem;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 2rem 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      margin-top: 4rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 8vw, 6rem);
+      max-width: var(--page-w);
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink-3);
+    }
+
+    .footer-meta {
+      font-size: 0.75rem;
+      color: var(--ink-3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { font-size: 10pt; }
+      .masthead { background: #111 !important; -webkit-print-color-adjust: exact; }
+      .toc-wrap { display: none; }
+      .section { opacity: 1; transform: none; animation: none; }
+      .table-wrap { border: 1px solid #ccc; }
+      thead tr { background: #222 !important; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-eyebrow">
+        <span class="eyebrow-text">Standard Operating Procedure</span>
+        <span class="eyebrow-rule"></span>
+      </div>
+      <h1>LG <em>Thermostat</em><br>Controller</h1>
+      <p class="masthead-sub">Chrome Extension &nbsp;·&nbsp; Operations Reference &nbsp;·&nbsp; LG AC Smart 5</p>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="toc-wrap">
+    <nav class="toc">
+      <p class="toc-heading">Contents</p>
+      <a href="#s1"><span class="toc-num">01</span> Prerequisites</a>
+      <a href="#s2"><span class="toc-num">02</span> First-Time Certificate Setup</a>
+      <a href="#s3"><span class="toc-num">03</span> Opening the Side Panel</a>
+      <a href="#s4"><span class="toc-num">04</span> Configuring Settings</a>
+      <a href="#s5"><span class="toc-num">05</span> Connecting to the Controller</a>
+      <a href="#s6"><span class="toc-num">06</span> Viewing and Searching Rooms</a>
+      <a href="#s7"><span class="toc-num">07</span> Controlling a Room</a>
+      <a href="#s8"><span class="toc-num">08</span> Live Data Refresh</a>
+      <a href="#s9"><span class="toc-num">09</span> Disconnecting</a>
+      <a href="#s10"><span class="toc-num">10</span> Troubleshooting</a>
+      <a href="#s11"><span class="toc-num">11</span> Data Notes</a>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <main class="content">
+
+    <!-- 01 Prerequisites -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <div class="section-title-wrap">
+          <h2>Prerequisites</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Before using the extension, confirm the following are in place:</p>
+        <ul>
+          <li><strong>Google Chrome</strong> installed (not Chromium, Edge, or other browsers)</li>
+          <li>Extension installed and enabled in Chrome at <code>chrome://extensions</code></li>
+          <li>Network access to the AC Smart 5 controller — same local network or VPN</li>
+          <li>The device IP address (default: <code>172.16.0.140</code>)</li>
+          <li>LG AC Smart 5 username and password</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 Certificate -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <div class="section-title-wrap">
+          <h2>First-Time Setup: Accept the Device Certificate</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>The AC Smart 5 uses a self-signed HTTPS certificate. Chrome blocks it until you manually accept it — this is a one-time step per Chrome profile.</p>
+        <ol>
+          <li>Open a new Chrome tab</li>
+          <li>Navigate to <code>https://&lt;device-ip&gt;/</code> — for example, <code>https://172.16.0.140/</code></li>
+          <li>Click <strong>Advanced &rarr; Proceed to 172.16.0.140 (unsafe)</strong></li>
+          <li>The LG AC Smart 5 login page appears — you may close this tab afterward</li>
+        </ol>
+        <div class="callout">
+          <span class="callout-icon">&#9888;</span>
+          <p>If the extension shows a connection error, repeat this step. Self-signed certificates occasionally reset after device reboots or firmware updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Side Panel -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <div class="section-title-wrap">
+          <h2>Opening the Side Panel</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <ol>
+          <li>Click the <strong>LG Thermostat icon</strong> in the Chrome toolbar</li>
+          <li>The side panel opens on the right side of the current tab</li>
+          <li>The panel is scoped to that tab — switching to another tab hides it</li>
+          <li>Return to the original tab to bring the panel back</li>
+        </ol>
+        <div class="callout callout-info">
+          <span class="callout-icon">&#9432;</span>
+          <p>The side panel intentionally follows a single tab. To use it on a different tab, click the toolbar icon again from that tab.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Settings -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <div class="section-title-wrap">
+          <h2>Configuring Settings</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Click the <strong>gear icon</strong> in the panel header to open Settings. All settings persist across sessions — you only need to enter them once.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Device IP Address</td>
+                <td>IP of the AC Smart 5 controller (e.g., <code>172.16.0.140</code>)</td>
+              </tr>
+              <tr>
+                <td>Username</td>
+                <td>AC Smart 5 login username</td>
+              </tr>
+              <tr>
+                <td>Password</td>
+                <td>AC Smart 5 login password</td>
+              </tr>
+              <tr>
+                <td>Poll interval (minutes)</td>
+                <td>How often live temperature data refreshes. Default: 1 min. Minimum: 0.1 min.</td>
+              </tr>
+              <tr>
+                <td>Room data ingest</td>
+                <td>Toggle for supplementary room occupancy data. Off by default.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Connect -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <div class="section-title-wrap">
+          <h2>Connecting to the Controller</h2>
+        </div>
+      </div>
+      <div class="section-body">
+
+        <h3>Automatic connection (credentials saved)</h3>
+        <p>If username and password are entered, clicking <strong>Connect</strong> will:</p>
+        <ol>
+          <li>Check for an open device tab</li>
+          <li>If no tab exists, automatically open <code>https://&lt;ip&gt;/</code> in a background tab</li>
+          <li>Authenticate using the saved credentials</li>
+          <li>Load all indoor unit data</li>
+          <li>Begin live polling on the configured interval</li>
+        </ol>
+
+        <span class="gold-rule"></span>
+
+        <h3>Manual connection (no credentials)</h3>
+        <ol>
+          <li>The <strong>"Device tab not open"</strong> banner appears</li>
+          <li>Click <strong>Open</strong> — a new tab opens to the device login page</li>
+          <li>Log in manually in that tab</li>
+          <li>Return to the panel and click <strong>Connect</strong> again</li>
+        </ol>
+
+        <span class="gold-rule"></span>
+
+        <h3>Status indicators</h3>
+        <div style="margin-top: 0.5rem;">
+          <div class="status-row">
+            <span class="dot dot-green"></span>
+            <span class="status-label">Connected</span>
+            <span class="status-desc">Polling active, all units loaded</span>
+          </div>
+          <div class="status-row">
+            <span class="dot dot-red"></span>
+            <span class="status-label">Disconnected</span>
+            <span class="status-desc">Not connected to device</span>
+          </div>
+          <div class="status-row">
+            <span class="dot dot-yellow"></span>
+            <span class="status-label">Error banner</span>
+            <span class="status-desc">See error message — check IP, credentials, or network</span>
+          </div>
+          <div class="status-row">
+            <span class="dot dot-yellow"></span>
+            <span class="status-label">Device tab not open</span>
+            <span class="status-desc">Device tab was closed; reopen manually or re-enter credentials</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Search -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <div class="section-title-wrap">
+          <h2>Viewing and Searching Rooms</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Once connected, all indoor units are listed as cards. The search bar appears above the room list and receives focus automatically.</p>
+
+        <h3>Search behavior</h3>
+        <ul>
+          <li>Type digits to filter by room number — letters are ignored</li>
+          <li>The first digit matches the floor: typing <code>4</code> shows all rooms on floor 4</li>
+          <li>Typing <code>402</code> narrows to room 402 specifically</li>
+          <li>Clear the field to show all rooms</li>
+        </ul>
+
+        <span class="gold-rule"></span>
+
+        <h3>Room card elements</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Room name</td>
+                <td>Unit identifier (e.g., <code>402</code>)</td>
+              </tr>
+              <tr>
+                <td>Floor label</td>
+                <td>Floor name from the device (e.g., <code>4TH FLOOR</code>)</td>
+              </tr>
+              <tr>
+                <td>Room temp</td>
+                <td>Current measured temperature in &deg;F</td>
+              </tr>
+              <tr>
+                <td>Set temp</td>
+                <td>Target setpoint in &deg;F — use + / &minus; buttons to adjust</td>
+              </tr>
+              <tr>
+                <td>Power button</td>
+                <td>Toggle the unit on or off</td>
+              </tr>
+              <tr>
+                <td>Mode row</td>
+                <td>COOL &nbsp;·&nbsp; HEAT &nbsp;·&nbsp; FAN &nbsp;·&nbsp; AUTO &nbsp;·&nbsp; DRY</td>
+              </tr>
+              <tr>
+                <td>Fan row</td>
+                <td>LOW &nbsp;·&nbsp; MED &nbsp;·&nbsp; HIGH &nbsp;·&nbsp; AUTO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 Control -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <div class="section-title-wrap">
+          <h2>Controlling a Room</h2>
+        </div>
+      </div>
+      <div class="section-body">
+
+        <h3>Adjust setpoint temperature</h3>
+        <ul>
+          <li>Click <strong>+</strong> to raise the setpoint by 0.5&deg;C (displayed in &deg;F)</li>
+          <li>Click <strong>&minus;</strong> to lower the setpoint by 0.5&deg;C</li>
+          <li>The device enforces per-unit min/max limits — typically 16&ndash;30&deg;C (61&ndash;86&deg;F)</li>
+          <li>Changes are sent immediately; no save button is required</li>
+        </ul>
+
+        <h3>Turn a unit on or off</h3>
+        <ul>
+          <li>Click the <strong>power button</strong> (circle icon) in the top-right of the card</li>
+          <li>Active units show the button highlighted</li>
+          <li>The change takes effect immediately</li>
+        </ul>
+
+        <h3>Change mode</h3>
+        <ul>
+          <li>Click <strong>COOL, HEAT, FAN, AUTO,</strong> or <strong>DRY</strong></li>
+          <li>The active mode is highlighted in blue</li>
+        </ul>
+
+        <h3>Change fan speed</h3>
+        <ul>
+          <li>Click <strong>LOW, MED, HIGH,</strong> or <strong>AUTO</strong></li>
+          <li>The active speed is highlighted in blue</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 08 Refresh -->
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <div class="section-title-wrap">
+          <h2>Live Data Refresh</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <ul>
+          <li>The panel polls the device every <strong>N minutes</strong> per your poll interval setting</li>
+          <li>While the panel is open, it also refreshes every <strong>10 seconds</strong> in the foreground</li>
+          <li>The device tab must remain open for polling to continue</li>
+        </ul>
+        <div class="callout">
+          <span class="callout-icon">&#9888;</span>
+          <p>If the device tab is closed while connected, the panel will display: <strong>"Device tab was closed. Reopen it to reconnect."</strong> Open a tab to the device URL and click Connect to resume.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 Disconnect -->
+    <section class="section" id="s9">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <div class="section-title-wrap">
+          <h2>Disconnecting</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Open the gear icon to reveal Settings, then click <strong>Disconnect</strong>.</p>
+        <ul>
+          <li>Clears the active connection and stops polling</li>
+          <li>Room list is cleared from view</li>
+          <li>Credentials and IP remain saved for the next session</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10 Troubleshooting -->
+    <section class="section" id="s10">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <div class="section-title-wrap">
+          <h2>Troubleshooting</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Problem</th>
+                <th>Resolution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>"Device tab was closed"</td>
+                <td>Open a tab to <code>https://&lt;ip&gt;/</code> and click Connect</td>
+              </tr>
+              <tr>
+                <td>Login failed (HTTP 401 / 403)</td>
+                <td>Verify username and password in Settings</td>
+              </tr>
+              <tr>
+                <td>"Tab took too long to load"</td>
+                <td>Accept the device certificate first (see Section 02)</td>
+              </tr>
+              <tr>
+                <td>Temperatures not updating</td>
+                <td>Check poll interval; confirm the device tab is still open</td>
+              </tr>
+              <tr>
+                <td>No rooms appear after connect</td>
+                <td>Device returned 0 indoor units — verify device IP and network access</td>
+              </tr>
+              <tr>
+                <td>Panel disappears when switching tabs</td>
+                <td>Expected behavior — the panel is scoped to the originating tab</td>
+              </tr>
+              <tr>
+                <td>Extension not responding</td>
+                <td>Go to <code>chrome://extensions</code>, find LG Thermostat Controller, and click the reload icon</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Data Notes -->
+    <section class="section" id="s11">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <div class="section-title-wrap">
+          <h2>Data Notes</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <ul>
+          <li>All temperatures are displayed in <strong>Fahrenheit</strong></li>
+          <li>API communication with the device uses <strong>Celsius</strong> internally</li>
+          <li>Room occupancy data is fetched once at connect time — not on every poll cycle</li>
+          <li>Credentials are stored in Chrome's local extension storage and are not synced across devices or profiles</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span class="footer-brand">LG Thermostat Controller</span>
+    <span class="footer-meta">LG AC Smart 5 &nbsp;·&nbsp; Chrome Extension &nbsp;·&nbsp; Internal Operations Reference</span>
+  </footer>
+
+</body>
+</html>
